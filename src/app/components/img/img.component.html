@@ -1,5 +1,10 @@
 <p>img works!</p>
+<img width="100" (load)="imgLoaded()" (error)="imgError()" [src]="imgPropiedad" alt="">
+
+<!--Utilizando un if-->
+<!--
 <img width="100" [src]="imgPropiedad" alt="" *ngIf="imgPropiedad; else elseImg">
 <ng-template #elseImg>
-  <img src="https://www.dten.com/wp-content/uploads/2022/05/default-image.jpg" width="100" />
+  <img [src]="imageDefault" width="100" />
 </ng-template>
+-->

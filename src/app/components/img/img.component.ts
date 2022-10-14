@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-img',
@@ -7,11 +7,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ImgComponent implements OnInit {
 
-  @Input() imgPropiedad = 'valor inicial'
+  @Input() imgPropiedad = ''
+  @Output() loaded = new EventEmitter<string>();
+  imageDefault= "https://www.dten.com/wp-content/uploads/2022/05/default-image.jpg"
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  imgError(){
+    this.imgPropiedad = this.imageDefault;
+  }
+
+  imgLoaded(){
+    console.log('load hijo');
+    this.loaded.emit('ejemplo string del hijo a padre');
+  }
 }
