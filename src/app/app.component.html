@@ -1,2 +1,6 @@
+<h1>Primer render</h1>
+<app-img imgPropiedad="Este valor viene desde el hijo"></app-img>
+<h2>Segundo render de data Binding</h2>
 <p><input type="text" [(ngModel)]="imgParent"/></p>
-<app-img [img]="imgParent"></app-img>
+<!--Se envia la propiedad enviandolo dinamicamente-->
+<app-img [imgPropiedad]="imgParent"></app-img>

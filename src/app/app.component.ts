@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  imgParent = 'my store';
+  imgParent = 'https://picsum.photos/200';
 }
