@@ -22,6 +22,6 @@ export class ImgComponent implements OnInit {
 
   imgLoaded(){
     console.log('load hijo');
-    this.loaded.emit('ejemplo string del hijo a padre');
+    this.loaded.emit(`string del hijo al padre: ${this.imgPropiedad}`);
   }
 }
