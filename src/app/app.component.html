@@ -4,3 +4,5 @@
 <p><input type="text" [(ngModel)]="imgParent"/></p>
 <!--Se envia la propiedad enviandolo dinamicamente-->
 <app-img (loaded)="onLoaded($event)" [imgPropiedad]="imgParent"></app-img>
+<h2>Products</h2>
+<app-product [myProduct]="product" *ngFor="let product of products"></app-product>
