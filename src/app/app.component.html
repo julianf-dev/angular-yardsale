@@ -2,7 +2,9 @@
 <app-img></app-img>
 <h2>Segundo render de data Binding</h2> -->
 <p><input type="text" [(ngModel)]="imgParent"/></p>
+<button (click)="toggleImg()">Toggle Image</button>
+<p>{{ showImg}}</p>
 <!--Se envia la propiedad enviandolo dinamicamente-->
-<app-img (loaded)="onLoaded($event)" [imgPropiedad]="imgParent"></app-img>
+<app-img *ngIf="showImg" (loaded)="onLoaded($event)" [imgPropiedad]="imgParent"></app-img>
 <h2>Products</h2>
-<app-product [myProduct]="product" *ngFor="let product of products"></app-product>
+<app-product [product]="product" *ngFor="let product of products"></app-product>

@@ -8,12 +8,15 @@ import { Product } from './models/product.mode';
 })
 export class AppComponent {
   imgParent = 'https://picsum.photos/200';
+  showImg = true;
 
   onLoaded(img:string){
     console.log('log padre', img)
     }
 
-
+  toggleImg() {
+    this.showImg = !this.showImg;
+  }
   products: Product[]=  [
     {
       id: '1',
@@ -40,4 +43,5 @@ export class AppComponent {
       image: './assets/img/books.jpg'
     },
   ];
+
 }
