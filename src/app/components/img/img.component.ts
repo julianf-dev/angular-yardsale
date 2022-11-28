@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, AfterViewIni
 })
 export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
-  @Input() imgPropiedad = ''
+  @Input() imgURL = ''
   @Output() loaded = new EventEmitter<string>();
   imageDefault= "https://www.dten.com/wp-content/uploads/2022/05/default-image.jpg"
   counter = 0;
@@ -20,22 +20,22 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // don't run async
     // run once time
     /* Crea la instancia unicamente de la clase */
-    console.log('Constructor', 'ImgValue =>', this.imgPropiedad);
-    this.imageDefault = 'Iniciar en constructor'
+    console.log('Constructor', 'ImgValue =>', this.imgURL);
+    this.imageDefault = 'https://www.dten.com/wp-content/uploads/2022/05/default-image.jpg'
   }
 
   ngOnChanges() {
     // run before render
     // run many times
     // run with input changes
-    console.log('OnChanges', 'ImgValue =>', this.imgPropiedad);
+    console.log('OnChanges', 'ImgValue =>', this.imgURL);
   }
 
   ngOnInit(): void {
     // run before render
     // run async functions - fetch
     // run once time
-    console.log('ngOnInit', 'ImgValue =>', this.imgPropiedad);
+    console.log('ngOnInit', 'ImgValue =>', this.imgURL);
 
     /* Correr una tarea que corra por cada segundo incrementando counter*/
     this.counterFn = window.setInterval(()=> {
@@ -62,11 +62,11 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   /* End */
 
   imgError(){
-    this.imgPropiedad = this.imageDefault;
+    this.imgURL = this.imageDefault;
   }
 
   imgLoaded(){
     console.log('load hijo');
-    this.loaded.emit(`string del hijo al padre: ${this.imgPropiedad}`);
+    this.loaded.emit(`string del hijo al padre: ${this.imgURL}`);
   }
 }

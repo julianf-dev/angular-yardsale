@@ -7,7 +7,7 @@ import { Product } from './models/product.mode';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  imgParent = 'https://picsum.photos/200';
+  imgParent = '';
   showImg = true;
 
   onLoaded(img:string){
