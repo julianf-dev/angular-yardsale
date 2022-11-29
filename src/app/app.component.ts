@@ -10,6 +10,7 @@ export class AppComponent {
   imgParent = '';
   showImg = true;
 
+  // If the event arrives from the child successfully
   onLoaded(img:string){
     console.log('log padre', img)
     }

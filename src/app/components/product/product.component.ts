@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   } */
 
   /* También podemos hacer esto*/
-  @Input('product') product!: Product;
+  @Input('myProduct') product !: Product;
 
 
   constructor() { }

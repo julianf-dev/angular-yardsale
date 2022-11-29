@@ -28,8 +28,8 @@
     <!--Se envia la propiedad enviandolo dinamicamente-->
     <h2>Products</h2>
     <app-product
-      [product]="product"
-      *ngFor="let product of products"
+    *ngFor="let product of products"
+    [myProduct]="product"
     ></app-product>
   </div>
 </div>

@@ -9,10 +9,11 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   @Input() imgURL = ''
   @Output() loaded = new EventEmitter<string>();
+
+
   imageDefault= "https://www.dten.com/wp-content/uploads/2022/05/default-image.jpg"
   counter = 0;
   counterFn: number | undefined
-
 
   /* Components life cicly*/
   constructor() {
@@ -21,7 +22,17 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // run once time
     /* Crea la instancia unicamente de la clase */
     console.log('Constructor', 'ImgValue =>', this.imgURL);
-    this.imageDefault = 'https://www.dten.com/wp-content/uploads/2022/05/default-image.jpg'
+  }
+
+  imgError(){
+    this.imgURL = this.imageDefault;
+  }
+
+
+  imgLoaded(){
+    console.log('load hijo');
+    /* Use the variable loaded to emit the message to the parent*/
+    this.loaded.emit(`string del hijo al padre: ${this.imgURL}`);
   }
 
   ngOnChanges() {
@@ -61,12 +72,6 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   /* End */
 
-  imgError(){
-    this.imgURL = this.imageDefault;
-  }
 
-  imgLoaded(){
-    console.log('load hijo');
-    this.loaded.emit(`string del hijo al padre: ${this.imgURL}`);
-  }
+
 }
