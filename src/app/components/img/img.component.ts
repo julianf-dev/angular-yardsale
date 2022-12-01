@@ -15,6 +15,17 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   counter = 0;
   counterFn: number | undefined
 
+    imgError(){
+      this.imgURL = this.imageDefault;
+    }
+
+
+    imgLoaded(){
+      console.log('load hijo');
+      /* Use the variable loaded to emit the message to the parent*/
+      this.loaded.emit(`string del hijo al padre: ${this.imgURL}`);
+    }
+
   /* Components life cicly*/
   constructor() {
     // run before render
@@ -22,17 +33,6 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // run once time
     /* Crea la instancia unicamente de la clase */
     console.log('Constructor', 'ImgValue =>', this.imgURL);
-  }
-
-  imgError(){
-    this.imgURL = this.imageDefault;
-  }
-
-
-  imgLoaded(){
-    console.log('load hijo');
-    /* Use the variable loaded to emit the message to the parent*/
-    this.loaded.emit(`string del hijo al padre: ${this.imgURL}`);
   }
 
   ngOnChanges() {
@@ -43,8 +43,8 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   }
 
   ngOnInit(): void {
-    // run before render
-    // run async functions - fetch
+    // run before- during render
+    // run async functions - fetch call API
     // run once time
     console.log('ngOnInit', 'ImgValue =>', this.imgURL);
 
@@ -58,7 +58,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   ngAfterViewInit(): void {
     // run after render
-    // manipulate the child components
+    // handler schild components
     // se relaciona con directivas
     console.log('ngAfterViewInit');
   }
