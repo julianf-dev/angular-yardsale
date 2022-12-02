@@ -1,0 +1,56 @@
+<div class="show-mobile">
+  <div>
+    <button (click)="toggleMenu()">
+      <img src="./assets/icons/icon_menu.svg" alt="menu">
+    </button>
+    <a href="">
+      <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
+    </a>
+    <a href="">
+      <img src="./assets/icons/icon_shopping_cart.svg" alt="logo">
+    </a>
+  </div>
+  <div class="side-menu " [ngClass]="{active: activeMenu}">
+    <button class="side-menu__close" (click)="toggleMenu()">
+      Close
+    </button>
+    <ul class="side-menu__list">
+      <li><a href="">Categories</a></li>
+      <hr/>
+      <li><a href="">All</a></li>
+      <li><a href="">Clothes</a></li>
+      <li><a href="">Electronics</a></li>
+      <li><a href="">Furnitures</a></li>
+      <li><a href="">Toys</a></li>
+      <li><a href="">Others</a></li>
+      <li><a href="">My Orders</a></li>
+      <li><a href="">My Account</a></li>
+    </ul>
+    <ul class="side-menu__list">
+      <li><a href="" class="email">@example.com</a></li>
+      <li><a href="" class="sign out">Sing out</a></li>
+    </ul>
+  </div>
+</div>
+<div class="hide-mobile">
+  <div>
+    <nav>
+      <a class="logo" href="">
+        <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
+      </a>
+      <ul>
+        <li><a href="">All</a></li>
+        <li><a href="">Clothes</a></li>
+        <li><a href="">Electronics</a></li>
+      </ul>
+    </nav>
+    <div class="info">
+      <div class="account">nicolas@nicolas.com</div>
+      <div>
+        <a href="">
+          <img src="./assets/icons/icon_shopping_cart.svg" alt="logo">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
