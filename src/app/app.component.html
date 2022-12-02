@@ -1,36 +1,21 @@
-<div class="container">
-  <div class="row">
-    <form class="py-2">
-      <div class="form-group mb-2">
-        <label for="urlImg" class="visually-hidden">Url Img: </label>
-        <!-- Usando el ngModel enviamos con el dataBinding propiedades al hijo-->
-        <input
-          class="form-control"
-          type="text"
-          [(ngModel)]="imgParent"
-          name="urlImg"
-        />
-      </div>
-      <button type="submit" class="btn btn-primary" (click)="toggleImg()">
-        Toggle Image
-      </button>
-    </form>
-  </div>
-  <hr />
-  <app-img
+<!--
+    Usando el ngModel enviamos con el dataBinding propiedades al hijo
+    <label for="urlImg" class="visually-hidden">Url Img: </label>
+
+    <input
+    class="form-control"
+    type="text"
+    [(ngModel)]="imgParent"
+    name="urlImg"
+    />
+    <button type="submit" class="btn btn-primary" (click)="toggleImg()">
+      Toggle Image
+    </button>
+    <app-img
     *ngIf="showImg"
     (loaded)="onLoaded($event)"
     [imgURL]="imgParent"
-  ></app-img>
-
-  <hr />
-  <div class="row">
-    <!--Se envia la propiedad enviandolo dinamicamente-->
-    <h2>Products</h2>
-    <app-product
-    *ngFor="let product of products"
-    [myProduct]="product"
-    ></app-product>
-  </div>
-</div>
-<p>{{ showImg }}</p>
+    ></app-img>
+    <p>{{ showImg }}</p>
+  -->
+<app-products></app-products>

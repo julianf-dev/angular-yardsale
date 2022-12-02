@@ -1,10 +1,7 @@
-<div class="row justify-content-center">
-  <p class="text-center">Img works!</p>
-  <img (error)="imgError()" (load)="imgLoaded()" [src]="imgURL" alt="">
-  <h3 class="text-center">{{ counter }}</h3>
-</div>
-
-
+<img (error)="imgError()" (load)="imgLoaded()" [src]="imgURL" alt="" />
+<!--
+<h3 class="text-center">{{ counter }}</h3>
+-->
 <!--Utilizando un if-->
 <!--
 <img width="100" [src]="imgPropiedad" alt="" *ngIf="imgPropiedad; else elseImg">
