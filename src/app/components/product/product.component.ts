@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
 
 @Component({
@@ -18,11 +18,19 @@ export class ProductComponent implements OnInit {
 
   /* También podemos hacer esto*/
   @Input('myProduct') product !: Product;
+  @Output() addedProduct = new EventEmitter<Product>();
+  disabled:boolean = false
 
 
+  addCartImg = '/assets/icons/bt_add_to_cart.svg'
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onAddToCar(){
+    this.addedProduct.emit(this.product)
+    this.addCartImg = '/assets/icons/bt_added_to_cart.svg'
+    this.disabled = true
+  }
 }

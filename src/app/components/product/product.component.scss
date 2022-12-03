@@ -1,3 +1,36 @@
 p, h2{
   margin: 0;
 }
+
+.product{
+  padding: 0 1rem;
+  &__info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    & div p:nth-child(1){
+      font-weight: bold;
+      font-size: var(--md);
+    }
+    & div p:nth-child(2){
+      font-size: var(--sm);
+      color: var(--very-light-pink);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    &_image{
+      cursor: pointer;
+      width: 35px;
+	    height: 35px;
+    }
+  }
+}
+
+.disabled {
+	cursor: not-allowed;
+}
+.pointer{
+	cursor: pointer;
+}
+

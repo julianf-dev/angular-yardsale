@@ -1,3 +1,16 @@
-<app-img [imgURL]="product.image"></app-img>
-<h2>{{product.price}}</h2>
-<p>{{product.name}}</p>
+<div class="product">
+  <app-img [imgURL]="product.image"></app-img>
+  <div class="product__info">
+    <div class="">
+      <p>${{ product.price }}</p>
+      <p>{{ product.name }}</p>
+    </div>
+    <div
+      class="product__info_image"
+      [ngClass]="{ disabled: disabled }"
+      (click)="onAddToCar()"
+    >
+      <app-img [imgURL]="addCartImg"></app-img>
+    </div>
+  </div>
+</div>

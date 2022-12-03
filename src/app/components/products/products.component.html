@@ -1,8 +1,14 @@
-<h2>Products</h2>
+<p>
+  {{myShoppingCart.length}}
+</p>
+<p>
+  Total: {{total}}
+</p>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product
     *ngFor="let product of products"
     [myProduct]="product"
+    (addedProduct)="onAddToShoppingCart($event)"
   ></app-product>
 </div>

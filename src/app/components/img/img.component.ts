@@ -28,9 +28,9 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
 
     imgLoaded(){
-      console.log('load hijo');
+      //console.log('load hijo');
       /* Use the variable loaded to emit the message to the parent*/
-      this.loaded.emit(`string del hijo al padre: ${this.imgURL}`);
+      //this.loaded.emit(`string del hijo al padre: ${this.imgURL}`);
     }
 
   /* Components life cicly*/
@@ -39,16 +39,16 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // don't run async
     // run once time
     /* Crea la instancia unicamente de la clase */
-    console.log('Constructor', 'ImgValue =>', this.imgURL);
+    //console.log('Constructor', 'ImgValue =>', this.imgURL);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     // run before render
     // run many times
     // run with input changes
-    console.log('OnChanges', 'ImgValue =>', this.imgURL);
+    //console.log('OnChanges', 'ImgValue =>', this.imgURL);
     // corre cada que cambie algun input, llegan todos los cambios
-    console.log('changes',changes)
+    //console.log('changes',changes)
     // un solo cambio
   }
 
@@ -56,13 +56,13 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // run before- during render
     // run async functions - fetch call API
     // run once time
-    console.log('ngOnInit', 'ImgValue =>', this.imgURL);
+    //console.log('ngOnInit', 'ImgValue =>', this.imgURL);
 
     /* Correr una tarea que corra por cada segundo incrementando counter*/
-    this.counterFn = window.setInterval(()=> {
+   /*  this.counterFn = window.setInterval(()=> {
       this.counter += 1;
       console.log('run counter')
-    }, 1000)
+    }, 1000) */
 
   }
 
@@ -70,13 +70,13 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // run after render
     // handler schild components
     // se relaciona con directivas
-    console.log('ngAfterViewInit');
+    //console.log('ngAfterViewInit');
   }
 
   ngOnDestroy(): void {
     // Only run when we delete a component
-    console.log('ngOnDestroy');
-    window.clearInterval(this.counterFn);
+    //console.log('ngOnDestroy');
+    /* window.clearInterval(this.counterFn); */
 
   }
 

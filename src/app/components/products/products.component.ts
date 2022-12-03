@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
 
 @Component({
@@ -12,6 +12,10 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  myShoppingCart: Product[] = []
+  total = 0
+
 
   products: Product[] = [
     {
@@ -39,5 +43,14 @@ export class ProductsComponent implements OnInit {
       image: './assets/img/books.jpg'
     },
   ];
+
+  onAddToShoppingCart( product: Product){
+    if (this.myShoppingCart.includes(product)){
+      console.log("Ya existe producto")
+    } else {
+      this.myShoppingCart.push(product);
+      this.total = this.myShoppingCart.reduce((sum,item) => sum + item.price, 0)
+    }
+  }
 
 }
