@@ -2,6 +2,18 @@
   {{myShoppingCart.length}}
 </p>
 <p>
+  Today:  {{ today | date:'short'}}
+</p>
+<p>
+  LastDay:  {{ date | date:'yyyy.MM.dd'}}
+</p>
+<p>
+  LastDay:  {{ date | timeAgo}}
+</p>
+<p>
+  UppercSe:  {{ 'dsadsDASGasd SDASa' | uppercase}}
+</p>
+<p>
   Total: {{total}}
 </p>
 <div class="products--grid">

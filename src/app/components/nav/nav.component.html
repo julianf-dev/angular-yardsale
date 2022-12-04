@@ -6,9 +6,13 @@
     <a href="">
       <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
     </a>
-    <a href="">
+    <div >
       <img src="./assets/icons/icon_shopping_cart.svg" alt="logo">
-    </a>
+      <span *ngIf="lengthTotal > 9; else lessLength">+9</span>
+      <ng-template #lessLength>
+        <span>{{lengthTotal}}</span>
+      </ng-template>
+    </div>
   </div>
   <div class="side-menu " [ngClass]="{active: activeMenu}">
     <button class="side-menu__close" (click)="toggleMenu()">

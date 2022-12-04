@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
+import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
 @Component({
@@ -9,45 +10,37 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ProductsComponent implements OnInit {
 
+  myShoppingCart: Product[] = []
+  total = 0
+  today = new Date();
+  date = new Date(2021,2,21)
+
+  // Peticion async
   constructor(
-    private storeServices: StoreService
+    private storeServices: StoreService,
+    private productService: ProductsService
   ) {
     this.myShoppingCart = this.storeServices.getShopingCart()
   }
 
   ngOnInit(): void {
+    // Mejor momento para manejar sync
+    this.productService.getAllProducts()
+    .subscribe({
+      next:(products) => {
+        this.products = products;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+      }
+    });
   }
 
-  myShoppingCart: Product[] = []
-  total = 0
 
 
-  products: Product[] = [
-    {
-      id: '1',
-      name: 'EL mejor juguete',
-      price: 565,
-      image: './assets/img/toy.jpg'
-    },
-    {
-      id: '2',
-      name: 'Bicicleta casi nueva',
-      price: 356,
-      image: './assets/img/bike.jpg'
-    },
-    {
-      id: '3',
-      name: 'Colleción de albumnes',
-      price: 34,
-      image: './assets/img/album.jpg'
-    },
-    {
-      id: '4',
-      name: 'Mis libros',
-      price: 23,
-      image: './assets/img/books.jpg'
-    },
-  ];
+  products: Product[] = [];
 
   onAddToShoppingCart( product: Product){
     this.storeServices.addProduct(product)
