@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
 
+import { StoreService } from 'src/app/services/store.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -8,7 +9,11 @@ import { Product } from 'src/app/models/product.mode';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private storeServices: StoreService
+  ) {
+    this.myShoppingCart = this.storeServices.getShopingCart()
+  }
 
   ngOnInit(): void {
   }
@@ -45,12 +50,10 @@ export class ProductsComponent implements OnInit {
   ];
 
   onAddToShoppingCart( product: Product){
-    if (this.myShoppingCart.includes(product)){
-      console.log("Ya existe producto")
-    } else {
-      this.myShoppingCart.push(product);
-      this.total = this.myShoppingCart.reduce((sum,item) => sum + item.price, 0)
-    }
+    this.storeServices.addProduct(product)
+    this.total = this.storeServices.getTotal()
   }
+
+
 
 }
