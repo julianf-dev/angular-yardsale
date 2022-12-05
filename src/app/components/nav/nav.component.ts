@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
 import { StoreService } from 'src/app/services/store.service';
 
@@ -7,25 +7,26 @@ import { StoreService } from 'src/app/services/store.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit, OnChanges {
+export class NavComponent implements OnInit {
 
   activeMenu:boolean = false;
-  myShoppingCart:Product[] = []
-  lengthTotal: number = 0
+  counter = 0
 
 
-  constructor( private shoppingCart:StoreService) {
-    this.myShoppingCart = this.shoppingCart.getShopingCart();
-    this.lengthTotal =  this.myShoppingCart.length
+  constructor( private storeService:StoreService) {
   }
 
-  ngOnChanges(){
-    console.log(this.myShoppingCart)
-  }
+  myCart$ =  this.storeService.myCart$
 
 
+  // Nos suscribimos para poder escuchar los cambios
   ngOnInit(): void {
+    this.storeService.myCart$.subscribe(products => {
+      this.counter = products.length
+    })
   }
+
+
 
   toggleMenu(){
     this.activeMenu = !this.activeMenu;

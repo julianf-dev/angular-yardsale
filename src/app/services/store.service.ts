@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.mode';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,9 @@ import { Product } from '../models/product.mode';
 export class StoreService {
 
   private myShoppingCart: Product[] = []
+  private myCart = new BehaviorSubject<Product[]>([]);
+
+  myCart$ = this.myCart.asObservable();
 
   constructor() { }
 
@@ -19,6 +23,7 @@ export class StoreService {
       console.log('Product exist')
     } else {
       this.myShoppingCart.push(product);
+      this.myCart.next(this.myShoppingCart);
     }
   }
 

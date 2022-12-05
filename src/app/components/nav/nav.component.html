@@ -6,11 +6,11 @@
     <a href="">
       <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
     </a>
-    <div >
+    <div class="cart">
       <img src="./assets/icons/icon_shopping_cart.svg" alt="logo">
-      <span *ngIf="lengthTotal > 9; else lessLength">+9</span>
+      <span class="span-cart"   *ngIf="counter > 9; else lessLength">+9</span>
       <ng-template #lessLength>
-        <span>{{lengthTotal}}</span>
+        <span class="span-cart"  >{{counter}}</span>
       </ng-template>
     </div>
   </div>
@@ -50,10 +50,12 @@
     </nav>
     <div class="info">
       <div class="account">nicolas@nicolas.com</div>
-      <div>
-        <a href="">
-          <img src="./assets/icons/icon_shopping_cart.svg" alt="logo">
-        </a>
+      <div class="cart">
+        <img src="./assets/icons/icon_shopping_cart.svg" alt="logo">
+        <span class="span-cart"   *ngIf="counter > 9; else lessLength">+9</span>
+        <ng-template #lessLength>
+          <span class="span-cart"  >{{counter}}</span>
+        </ng-template>
       </div>
     </div>
   </div>
