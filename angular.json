@@ -30,8 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -101,11 +100,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "d8b86eb8-94e7-4fc9-b8d0-4e2bc84f9e6f"
+    "analytics": "d8b86eb8-94e7-4fc9-b8d0-4e2bc84f9e6f",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

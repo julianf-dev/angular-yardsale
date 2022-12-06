@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -33,8 +33,6 @@ export class ProductsComponent implements OnInit {
       error: (error) => {
         console.error(error);
       },
-      complete: () => {
-      }
     });
   }
 

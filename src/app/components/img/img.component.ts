@@ -1,19 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, AfterViewInit, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-img',
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss']
 })
-export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class ImgComponent {
 
-  imgURL: string = ''
+  imgURL = ''
   // cada que llegue el input corra este metodo
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('imgURL')
   set changeImg(newImg: string){
     this.imgURL = newImg;
   }
-  @Input() alt:string  = ''
+  @Input() alt  = ''
   @Output() loaded = new EventEmitter<string>();
 
 
@@ -41,7 +42,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     //console.log('Constructor', 'ImgValue =>', this.imgURL);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+ /*  ngOnChanges(changes: SimpleChanges) {
     // run before render
     // run many times
     // run with input changes
@@ -57,15 +58,15 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // run once time
     //console.log('ngOnInit', 'ImgValue =>', this.imgURL);
 
-    /* Correr una tarea que corra por cada segundo incrementando counter*/
-   /*  this.counterFn = window.setInterval(()=> {
-      this.counter += 1;
-      console.log('run counter')
-    }, 1000) */
+    //Correr una tarea que corra por cada segundo incrementando counter
+    //this.counterFn = window.setInterval(()=> {
+      //this.counter += 1;
+     // console.log('run counter')
+    //}, 1000)
 
-  }
+  } */
 
-  ngAfterViewInit(): void {
+  /* ngAfterViewInit(): void {
     // run after render
     // handler schild components
     // se relaciona con directivas
@@ -79,8 +80,6 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   }
 
-  /* End */
 
 
 
-}

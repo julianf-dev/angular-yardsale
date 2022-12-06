@@ -1,9 +1,9 @@
 <div class="product">
-  <app-img [imgURL]="product.image"></app-img>
+  <app-img [imgURL]="myProduct.image"></app-img>
   <div class="product__info">
     <div class="product__info_detail">
-      <p class="product__info_detail-title">{{ product.price | currency:'USD ' }}</p>
-      <p class="product__info_detail-description">{{ product.title | vocalChange }}</p>
+      <p class="product__info_detail-title">{{ myProduct.price | currency:'USD ' }}</p>
+      <p class="product__info_detail-description">{{ myProduct.title | vocalChange }}</p>
     </div>
     <div
       class="product__info_image"

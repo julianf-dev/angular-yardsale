@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.mode';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class NavComponent implements OnInit {
 
-  activeMenu:boolean = false;
+  activeMenu = false;
   counter = 0
 
 

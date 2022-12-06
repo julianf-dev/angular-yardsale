@@ -12,7 +12,6 @@ export class StoreService {
 
   myCart$ = this.myCart.asObservable();
 
-  constructor() { }
 
   getShopingCart(){
     return this.myShoppingCart
