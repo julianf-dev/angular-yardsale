@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
   {{myShoppingCart.length}}
 </p>
 <p>
@@ -15,12 +15,21 @@
 </p>
 <p>
   Total: {{total}}
-</p>
+</p> -->
+<button (click)="toggleProductDetail()">open</button>
+<div class="product-detail" [class.active]="showProductDetail">
+  <div>
+    <button (click)="toggleProductDetail()">Close</button>
+    Contenido
+  </div>
+</div>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product
     *ngFor="let product of products"
     [myProduct]="product"
     (addedProduct)="onAddToShoppingCart($event)"
+    (showProduct)="onShowDetail($event)"
   ></app-product>
 </div>
+  <!--  -->

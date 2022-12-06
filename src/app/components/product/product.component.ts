@@ -19,6 +19,7 @@ export class ProductComponent{
   /* También podemos hacer esto*/
   @Input() myProduct !: Product;
   @Output() addedProduct = new EventEmitter<Product>();
+  @Output() showProduct = new EventEmitter<string>();
   disabled = false
 
 
@@ -30,4 +31,9 @@ export class ProductComponent{
     this.addCartImg = '/assets/icons/bt_added_to_cart.svg'
     this.disabled = true
   }
+
+  onShowDetail(){
+    this.showProduct.emit(this.myProduct.id)
+  }
 }
+

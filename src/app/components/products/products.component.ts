@@ -10,10 +10,15 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ProductsComponent implements OnInit {
 
+
+
   myShoppingCart: Product[] = []
   total = 0
   today = new Date();
   date = new Date(2021,2,21)
+  showProductDetail = false;
+  products: Product[] = [];
+
 
   // Peticion async
   constructor(
@@ -37,14 +42,19 @@ export class ProductsComponent implements OnInit {
   }
 
 
-
-  products: Product[] = [];
-
   onAddToShoppingCart( product: Product){
     this.storeServices.addProduct(product)
     this.total = this.storeServices.getTotal()
   }
 
+  toggleProductDetail(){
+    this.showProductDetail = !this.showProductDetail
+  }
 
-
+  onShowDetail(id : string){
+    this.productService.getProduct(id)
+    .subscribe(data => {
+      console.log('product', data)
+    })
+  }
 }
