@@ -18,6 +18,18 @@ export class ProductsComponent implements OnInit {
   date = new Date(2021,2,21)
   showProductDetail = false;
   products: Product[] = [];
+  productChosen: Product = {
+    id: '',
+    price: 0,
+    images: [],
+    title: '',
+    category: {
+      id: '',
+      name: '',
+      image: ''
+    },
+    description: ''
+  }
 
 
   // Peticion async
@@ -55,6 +67,7 @@ export class ProductsComponent implements OnInit {
     this.productService.getProduct(id)
     .subscribe(data => {
       console.log('product', data)
+      this.productChosen = data;
     })
   }
 }
