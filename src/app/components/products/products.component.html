@@ -16,7 +16,6 @@
 <p>
   Total: {{total}}
 </p> -->
-<button (click)="toggleProductDetail()">open</button>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product
@@ -26,6 +25,7 @@
     (showProduct)="onShowDetail($event)"
   ></app-product>
 </div>
+
 <div class="product-detail" [class.active]="showProductDetail">
   <div>
     <button class="" (click)="toggleProductDetail()">
@@ -36,45 +36,18 @@
         <img [src]="img" alt="" />
       </ng-template>
     </swiper>
-    <p>{{ productChosen.title }}</p>
-    <p>{{ productChosen.description }}</p>
+    <div class="product-info">
+      <p  class="product-info__title">{{ productChosen.title }}</p>
+      <p class="product-info__description"> {{ productChosen.description }}</p>
+      <button class="">
+        <img src="./src/icons/bt_add_to_cart.svg" alt="add to cart" />
+        Add to cart
+      </button>
+    </div>
   </div>
 </div>
 <!--  -->
+
 <div class="product-detail-close">
   <img src="./src/icons/icon_close.png" alt="icon-close" />
-</div>
-<img
-  src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-  alt="bike"
-  class="product-detail-image"
-/>
-<div class="scroll-points">
-  <li class="active"></li>
-  <li></li>
-  <li></li>
-</div>
-<div class="product-info-details">
-  <p>$120,00</p>
-  <p>Bike</p>
-  <p>
-    with its practical position, this bike also fulfills a decorative function,
-    add your hall or workspace.
-  </p>
-  <button class="primary-button add-to-cart-button">
-    <img src="./src/icons/bt_add_to_cart.svg" alt="add to cart" />
-    Add to cart
-  </button>
-</div>
-<div class="product-info-details">
-  <p>$120,00</p>
-  <p>Bike</p>
-  <p>
-    with its practical position, this bike also fulfills a decorative function,
-    add your hall or workspace.
-  </p>
-  <button class="primary-button add-to-cart-button">
-    <img src="./src/icons/bt_add_to_cart.svg" alt="add to cart" />
-    Add to cart
-  </button>
 </div>

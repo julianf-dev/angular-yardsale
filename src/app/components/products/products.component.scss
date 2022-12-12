@@ -23,6 +23,18 @@
   }
 }
 
+.product-info{
+  padding: 1.5rem;
+  &__title{
+    font-size: var(--md);
+    color: var(--very-light-pink);
+  }
+  &__description{
+    color: var(--very-light-pink);
+    font-size: var(--sn);
+  }
+}
+
 // tablets
 @media screen and (min-width: 40em) and (max-width:63.9rem){
   .products--grid{
