@@ -1,16 +1,12 @@
 <div class="product">
   <app-img
+  (click)="onShowDetail()"
   *ngIf="myProduct.images.length > 0"
   [imgURL]="myProduct.images[0]"></app-img>
   <div class="product__info">
     <div class="product__info_detail">
       <p class="product__info_detail-title">{{ myProduct.price | currency:'USD ' }}</p>
       <p class="product__info_detail-description">{{ myProduct.title }}</p>
-    </div>
-    <div
-      (click)="onShowDetail()"
-    >
-     Show Detail
     </div>
     <div
       class="product__info_image"

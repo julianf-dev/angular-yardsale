@@ -22,26 +22,34 @@
     right: 0;
     background-color: white;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-left: 3rem;
     transform: translateX(-100%);
     transition: all ease-out .5s;
-    &__list{
+    font-weight: 700;
+    &-div{
       width: 100%;
-      & a {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
+      & p{
+        padding: 20px 0;
       }
-      & li{
-        margin-bottom: 1.5rem;
+      &__close{
+        text-align: end;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+      &__list{
+        & ul{
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
       }
     }
     &.active {
       transform: translateX(0);
-    }
-    &__close{
-      text-align: end;
     }
   }
 }
