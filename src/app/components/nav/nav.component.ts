@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/services/store.service';
+import { faClose} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-nav',
@@ -10,6 +11,7 @@ export class NavComponent implements OnInit {
 
   activeMenu = false;
   counter = 0
+  faClose = faClose
 
 
   constructor( private storeService:StoreService) {

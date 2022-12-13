@@ -28,26 +28,24 @@
 
 <div class="product-detail" [class.active]="showProductDetail">
   <div>
-    <button class="" (click)="toggleProductDetail()">
-      <img src="./assets/icons/icon_close.png" alt="icon-close" />
+    <button class="product-detail__close" (click)="toggleProductDetail()">
+      <fa-icon [icon]="faClose"></fa-icon>
     </button>
     <swiper [slidesPerView]="1">
       <ng-template swiperSlide *ngFor="let img of productChosen.images">
-        <img [src]="img" alt="" />
+        <img [src]="img" alt="" class="product-detail__image"/>
       </ng-template>
     </swiper>
     <div class="product-info">
-      <p  class="product-info__title">{{ productChosen.title }}</p>
-      <p class="product-info__description"> {{ productChosen.description }}</p>
-      <button class="">
-        <img src="./src/icons/bt_add_to_cart.svg" alt="add to cart" />
-        Add to cart
+      <p class="product-info__price">
+        {{ productChosen.price | currency : "USD " }}
+      </p>
+      <p class="product-info__title">{{ productChosen.title }}</p>
+      <p class="product-info__description">{{ productChosen.description }}</p>
+      <button class="product-info__addCart">
+        <img src="./assets/icons/bt_add_to_cart.svg" alt="add to cart" />
+        <p>add to Cart</p>
       </button>
     </div>
   </div>
-</div>
-<!--  -->
-
-<div class="product-detail-close">
-  <img src="./src/icons/icon_close.png" alt="icon-close" />
 </div>

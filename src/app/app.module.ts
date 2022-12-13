@@ -14,6 +14,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { vocalChangePipe } from './pipes/vocal-change.pipe';
 import { HighLightDirective } from './directives/high-light.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HighLightDirective } from './directives/high-light.directive';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SwiperModule
+    SwiperModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,11 +15,10 @@
     </div>
   </div>
   <div class="side-menu" [ngClass]="{active: activeMenu}">
-    <div class="side-menu-div">
-      <button class="side-menuclose" (click)="toggleMenu()">
-        close
-      </button>
-      <div class="side-menu-div__list">
+    <button class="side-menu__close" (click)="toggleMenu()">
+      <fa-icon [icon]="faClose"></fa-icon>
+    </button>
+    <div class="side-menu__list">
         <p>CATEGORIES</p>
         <ul>
           <li><a href="">All</a></li>
@@ -28,14 +27,16 @@
           <li><a href="">Furnitures</a></li>
           <li><a href="">Toys</a></li>
           <li><a href="">Others</a></li>
-          <li><a href="">My Orders</a></li>
-          <li><a href="">My Account</a></li>
         </ul>
-      </div>
+        <hr>
     </div>
-    <div class="side-menu-div__list">
-      <li><a href="" class="email">@example.com</a></li>
-      <li><a href="" class="sign out">Sing out</a></li>
+    <div class="side-menu__list">
+      <ul>
+        <li><a href="">My Orders</a></li>
+        <li><a href="">My Account</a></li>
+        <li><a href="" class="email">micorreo@example.com</a></li>
+        <li><a href="" class="sign out">Sing out</a></li>
+      </ul>
     </div>
   </div>
 </div>

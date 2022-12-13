@@ -22,30 +22,37 @@
     right: 0;
     background-color: white;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: stretch;
     align-items: flex-start;
-    padding-left: 3rem;
+    padding-left:3rem;
     transform: translateX(-100%);
     transition: all ease-out .5s;
     font-weight: 700;
-    &-div{
-      width: 100%;
+    &__close{
+      width: 20px;
+      font-size: $lg;
+      align-self: flex-end;
+      color: $very-light-pink;
+      &:hover{
+        color: black;
+        border-radius: 50%;
+        background-color: $hospital-green;
+        cursor: pointer;
+      }
+    }
+    &__list{
+      margin-top: 2rem;
+      width: 80vw;
       & p{
         padding: 20px 0;
       }
-      &__close{
-        text-align: end;
-        &:hover{
-          cursor: pointer;
+      & ul{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        :last-child{
+          margin-bottom: 24px;
         }
-      }
-      &__list{
-        & ul{
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
       }
     }
     &.active {

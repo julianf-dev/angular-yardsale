@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/product.mode';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -11,12 +12,12 @@ import { StoreService } from 'src/app/services/store.service';
 export class ProductsComponent implements OnInit {
 
 
-
+  faClose = faClose
   myShoppingCart: Product[] = []
   total = 0
   today = new Date();
   date = new Date(2021,2,21)
-  showProductDetail = false;
+  showProductDetail = true;
   products: Product[] = [];
   productChosen: Product = {
     id: '',
