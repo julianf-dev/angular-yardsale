@@ -1,6 +1,6 @@
 <div class="product">
   <app-img
-
+  (click)="onShowDetail()"
   *ngIf="myProduct.images.length > 0"
   [imgURL]="myProduct.images[0]"></app-img>
   <div class="product__info">
@@ -15,10 +15,5 @@
     >
       <app-img [imgURL]="addCartImg"></app-img>
     </div>
-    <button
-    (click)="onShowDetail()"
-    >
-    ver detalle
-    </button>
   </div>
 </div>

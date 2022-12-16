@@ -1,6 +1,6 @@
 <div class="show-mobile">
   <div>
-    <button (click)="toggleMenu()">
+    <button class="show-mobile__button" (click)="toggleMenu()">
       <img src="./assets/icons/icon_menu.svg" alt="menu">
     </button>
     <a href="">
@@ -19,7 +19,7 @@
       <fa-icon [icon]="faClose"></fa-icon>
     </button>
     <div class="side-menu__list">
-        <p>CATEGORIES</p>
+        <p class="side-menu__title">CATEGORIES</p>
         <ul>
           <li><a href="">All</a></li>
           <li><a href="">Clothes</a></li>
@@ -28,7 +28,6 @@
           <li><a href="">Toys</a></li>
           <li><a href="">Others</a></li>
         </ul>
-        <hr>
     </div>
     <div class="side-menu__list">
       <ul>
