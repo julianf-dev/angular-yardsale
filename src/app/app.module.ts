@@ -16,7 +16,11 @@ import { vocalChangePipe } from './pipes/vocal-change.pipe';
 import { HighLightDirective } from './directives/high-light.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar])
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TimeAgoPipe,
     vocalChangePipe,
     HighLightDirective,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
