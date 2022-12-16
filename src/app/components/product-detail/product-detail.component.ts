@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements  OnInit {
 
   faClose = faClose
-  productChosen: Product = {
+  @Input() productChosen: Product = {
     id: '',
     price: 0,
     images: [],
@@ -23,9 +23,18 @@ export class ProductDetailComponent {
     },
     description: ''
   }
-  showProductDetail = false;
+  constructor(private storeService: StoreService) { }
+  showProductDetail = false
+  showProduct$ = this.storeService.showProduct$
 
-  toggleProductDetail(){
-    this.showProductDetail = !this.showProductDetail
+  ngOnInit(){
+    this.storeService.showProduct$.subscribe(state => {
+      this.showProductDetail = state
+    })
   }
+
+  toggleProductDetail() {
+    this.storeService.toogleProduct()
+  }
+
 }

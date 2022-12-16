@@ -18,7 +18,7 @@ export class ImgComponent {
   @Output() loaded = new EventEmitter<string>();
 
 
-  imageDefault= "https://www.dten.com/wp-content/uploads/2022/05/default-image.jpg"
+  imageDefault= "/assets/img/bike.jpg"
   counter = 0;
   counterFn: number | undefined
 

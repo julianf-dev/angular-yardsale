@@ -8,6 +8,8 @@ import { Product } from '../models/product.mode';
 export class ProductsService {
 
   private apiUrl = 'https://api.escuelajs.co/api/v1/products'
+
+
   constructor(
     private http: HttpClient
   ) { }
