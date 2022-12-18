@@ -37,4 +37,8 @@ export class ProductDetailComponent implements  OnInit {
     this.storeService.toogleProduct()
   }
 
+  onAddCart(){
+
+  }
+
 }
