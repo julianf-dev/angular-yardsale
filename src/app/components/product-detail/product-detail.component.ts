@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product.mode';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { StoreService } from 'src/app/services/store.service';
@@ -11,6 +11,9 @@ import { StoreService } from 'src/app/services/store.service';
 export class ProductDetailComponent implements  OnInit {
 
   faClose = faClose
+  disabled = false;
+
+  @Output() addedProduct = new EventEmitter<Product>();
   @Input() productChosen: Product = {
     id: '',
     price: 0,
@@ -38,7 +41,8 @@ export class ProductDetailComponent implements  OnInit {
   }
 
   onAddCart(){
-
+    this.addedProduct.emit(this.productChosen)
+    this.storeService.toogleProduct()
   }
 
 }

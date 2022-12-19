@@ -11,3 +11,6 @@ export interface Category{
   name: string;
   image: string;
 }
+export interface CreateProductDTA extends Omit<Product, 'id' | 'category'>{
+  categoryId: number;
+}

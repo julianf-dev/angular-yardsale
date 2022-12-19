@@ -19,7 +19,9 @@
       </p>
       <p class="product-info__title">{{ productChosen.title }}</p>
       <p class="product-info__description">{{ productChosen.description }}</p>
-      <button class="product-info__addCart">
+      <button
+          class="product-info__addCart"
+          (click)="onAddCart()">
         <img src="./assets/icons/bt_add_to_cart.svg" alt="add to cart" />
         <p>add to Cart</p>
       </button>

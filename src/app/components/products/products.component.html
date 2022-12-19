@@ -16,6 +16,7 @@
 <p>
   Total: {{total}}
 </p> -->
+<button type="button" (click)="createNewProduct()">create</button>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product
@@ -26,6 +27,7 @@
   ></app-product>
 </div>
 <app-product-detail
+  (addedProduct)="onAddToShoppingCart($event)"
   [productChosen]="productChosen"
 >
 </app-product-detail>
