@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { CreateProductDTA, Product } from 'src/app/models/product.mode';
+import { CreateProductDTO, Product } from 'src/app/models/product.mode';
 import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -72,7 +72,7 @@ export class ProductsComponent implements OnInit {
   }
 
   createNewProduct(){
-    const product: CreateProductDTA = {
+    const product: CreateProductDTO = {
       title: 'new item',
       description: 'es un nuevo item',
       images: [''],
@@ -84,4 +84,10 @@ export class ProductsComponent implements OnInit {
         this.products.unshift(data);
       })
   }
+
+  updateProduct(){
+
+  }
+
+
 }

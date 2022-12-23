@@ -20,6 +20,7 @@ export class ProductComponent{
   @Input() myProduct !: Product;
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();
+  @Output() updatedProduct = new EventEmitter<Product>();
   disabled = false
 
 
@@ -27,13 +28,17 @@ export class ProductComponent{
 
 
   onAddToCar(){
-    this.addedProduct.emit(this.myProduct)
-    this.addCartImg = '/assets/icons/bt_added_to_cart.svg'
-    this.disabled = true
+    this.addedProduct.emit(this.myProduct);
+    this.addCartImg = '/assets/icons/bt_added_to_cart.svg';
+    this.disabled = true;
   }
 
   onShowDetail(){
-    this.showProduct.emit(this.myProduct.id)
+    this.showProduct.emit(this.myProduct.id);
+  }
+
+  updateProduct(){
+    this.updatedProduct.emit(this.myProduct);
   }
 }
 

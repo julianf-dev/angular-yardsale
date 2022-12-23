@@ -11,6 +11,10 @@ export interface Category{
   name: string;
   image: string;
 }
-export interface CreateProductDTA extends Omit<Product, 'id' | 'category'>{
+export interface CreateProductDTO extends Omit<Product, 'id' | 'category'>{
   categoryId: number;
 }
+
+export interface UpdateProductDTO extends Partial<CreateProductDTO> {
+
+ }
