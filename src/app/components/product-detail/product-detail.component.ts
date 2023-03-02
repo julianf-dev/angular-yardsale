@@ -26,6 +26,7 @@ export class ProductDetailComponent implements  OnInit {
     },
     description: ''
   }
+
   constructor(private storeService: StoreService) { }
   showProductDetail = false
   showProduct$ = this.storeService.showProduct$

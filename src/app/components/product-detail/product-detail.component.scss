@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  transition: all ease-out .5s;
+  transition: none;
   transform: translateX(100%);
   &.active{
     transform: translateX(0);
@@ -37,6 +37,7 @@
   &__image{
     height: 65vh;
     width: 100%;
+    object-fit: cover;
     border-radius: 0 0 20px 20px;
   }
 }
@@ -70,16 +71,16 @@
 }
 
 
-// tablets
-@media screen and (min-width: 640px) and (max-width:1022.4px){
+@media screen and (min-width: 767.98px){
   .product-detail{
-    width: 340px;
-    height: calc( 100% - 61px);
-    min-width: 320px;
-    position: absolute;
-    right: 0;
+    width: 30rem;
+    left: inherit;
+    transition: all ease-out .5s;
   }
 }
 
-@media  (min-width: 1022.4px) {
+@media screen and (min-width: 1199px) {
+  .product-detail{
+    width: 40rem;
+  }
 }

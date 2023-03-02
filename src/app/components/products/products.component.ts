@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { CreateProductDTO, Product } from 'src/app/models/product.mode';
+import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.mode';
 import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -85,7 +85,16 @@ export class ProductsComponent implements OnInit {
       })
   }
 
-  updateProduct(){
+  updateProduct(product: UpdateProductDTO){
+    console.log(product)
+   /*  const changes: UpdateProductDTO = {
+      title: 'new Title',
+    }
+    const id = this.productChosen.id;
+    this.productService.update(id, changes)
+    .subscribe(data => {
+      console.log(data)
+    }) */
 
   }
 
