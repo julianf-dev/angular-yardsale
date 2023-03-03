@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { CargandoComponent } from './components/cargando/cargando.component';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar])
@@ -33,6 +34,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     vocalChangePipe,
     HighLightDirective,
     ProductDetailComponent,
+    CargandoComponent
   ],
   imports: [
     BrowserModule,

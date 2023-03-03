@@ -1,7 +1,7 @@
 
 <div class="product-detail" [class.active]="showProductDetail">
   <div>
-    <button class="product-detail__close" (click)="toggleProductDetail()">
+    <button type="button" aria-labelledby="buttonToggle" class="product-detail__close" (click)="toggleProductDetail()">
       <fa-icon [icon]="faClose"></fa-icon>
     </button>
     <swiper
@@ -20,6 +20,8 @@
       <p class="product-info__title">{{ productChosen.title }}</p>
       <p class="product-info__description">{{ productChosen.description }}</p>
       <button
+          type="button"
+          aria-labelledby="buttonAddProduct"
           class="product-info__addCart"
           (click)="onAddCart()">
         <img src="./assets/icons/bt_add_to_cart.svg" alt="add to cart" />

@@ -3,7 +3,7 @@
     <button class="show-mobile__button" (click)="toggleMenu()">
       <img src="./assets/icons/icon_menu.svg" alt="menu">
     </button>
-    <a href="">
+    <a [routerLink]="['/']"  >
       <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
     </a>
     <div class="cart">
@@ -15,26 +15,26 @@
     </div>
   </div>
   <div class="side-menu" [ngClass]="{active: activeMenu}">
-    <button class="side-menu__close" (click)="toggleMenu()">
+    <button class="side-menu__close" (click)="toggleMenu()" type="button" aria-labelledby="buttonClose">
       <fa-icon [icon]="faClose"></fa-icon>
     </button>
     <div class="side-menu__list">
         <p class="side-menu__title">CATEGORIES</p>
         <ul>
-          <li><a href="">All</a></li>
-          <li><a href="">Clothes</a></li>
-          <li><a href="">Electronics</a></li>
-          <li><a href="">Furnitures</a></li>
-          <li><a href="">Toys</a></li>
-          <li><a href="">Others</a></li>
+          <li><a [routerLink]="['/']"  >All</a></li>
+          <li><a [routerLink]="['/']"  >Clothes</a></li>
+          <li><a [routerLink]="['/']"  >Electronics</a></li>
+          <li><a [routerLink]="['/']"  >Furnitures</a></li>
+          <li><a [routerLink]="['/']"  >Toys</a></li>
+          <li><a [routerLink]="['/']"  >Others</a></li>
         </ul>
     </div>
     <div class="side-menu__list">
       <ul>
-        <li><a href="">My Orders</a></li>
-        <li><a href="">My Account</a></li>
-        <li><a href="" class="email">micorreo@example.com</a></li>
-        <li><a href="" class="sign out">Sing out</a></li>
+        <li><a [routerLink]="['/']"  >My Orders</a></li>
+        <li><a [routerLink]="['/']"  >My Account</a></li>
+        <li><a [routerLink]="['/']"   class="email">micorreo@example.com</a></li>
+        <li><a [routerLink]="['/']"   class="sign out">Sing out</a></li>
       </ul>
     </div>
   </div>
@@ -42,13 +42,15 @@
 <div class="hide-mobile">
   <div class="header">
     <nav class="nav">
-      <a class="nav__logo" href="">
+      <a class="nav__logo" [routerLink]="['/']"  >
         <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
       </a>
-      <div class="nav__list">
-        <li><a href="">All</a></li>
-        <li><a href="">Clothes</a></li>
-        <li><a href="">Electronics</a></li>
+      <div >
+        <ul class="nav__list">
+          <li><a [routerLink]="['/']"  >All</a></li>
+          <li><a [routerLink]="['/']"  >Clothes</a></li>
+          <li><a [routerLink]="['/']"  >Electronics</a></li>
+        </ul>
       </div>
     </nav>
     <div class="nav__info">

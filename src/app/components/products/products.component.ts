@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.mode';
+import { CreateProductDTO, Product } from 'src/app/models/product.mode';
 import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -11,7 +11,8 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ProductsComponent implements OnInit {
 
-
+  cargandoProducts = false;
+  showProduct = false;
   faClose = faClose
   myShoppingCart: Product[] = []
   total = 0
@@ -42,12 +43,14 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     // Mejor momento para manejar sync
+    this.cargandoProducts = true
     this.productService.getAllProducts()
     .subscribe({
       next:(products) => {
         this.products = products;
       },
       error: (error) => {
+        this.cargandoProducts = false
         console.error(error);
       },
     });
@@ -60,10 +63,12 @@ export class ProductsComponent implements OnInit {
   }
 
   toggleProductDetail(){
-    this.storeServices.toogleProduct();
+    this.showProduct = !this.showProduct
+    //this.storeServices.toogleProduct();
   }
 
   onShowDetail(id : string){
+    console.log(id)
     this.productService.getProduct(id)
     .subscribe(data => {
       this.toggleProductDetail();
@@ -85,7 +90,7 @@ export class ProductsComponent implements OnInit {
       })
   }
 
-  updateProduct(product: UpdateProductDTO){
+  updateProduct(product: Partial<CreateProductDTO>){
     console.log(product)
    /*  const changes: UpdateProductDTO = {
       title: 'new Title',

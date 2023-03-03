@@ -16,11 +16,11 @@
 <p>
   Total: {{total}}
 </p> -->
-<button type="button" (click)="createNewProduct()">create</button>
+<button type="button" aria-labelledby="buttonCreate" (click)="createNewProduct()">create</button>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product
-    *ngFor="let product of products"
+    *ngFor="let product of products.slice(0,20)"
     [myProduct]="product"
     (addedProduct)="onAddToShoppingCart($event)"
     (showProduct)="onShowDetail($event)"
@@ -32,3 +32,4 @@
   [productChosen]="productChosen"
 >
 </app-product-detail>
+<app-cargando *ngIf="cargandoProducts"></app-cargando>

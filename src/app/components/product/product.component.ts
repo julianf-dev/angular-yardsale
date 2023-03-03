@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Product, UpdateProductDTO } from 'src/app/models/product.mode';
+import { Product } from 'src/app/models/product.mode';
 
 @Component({
   selector: 'app-product',
@@ -20,7 +20,7 @@ export class ProductComponent{
   @Input() myProduct !: Product;
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();
-  @Output() updatedProduct = new EventEmitter<UpdateProductDTO>();
+  @Output() updatedProduct = new EventEmitter<Product>();
   disabled = false
 
 

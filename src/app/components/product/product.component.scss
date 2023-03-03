@@ -32,6 +32,9 @@ p, h2{
       }
     }
   }
+  &__image{
+    cursor: pointer;
+  }
 }
 
 .disabled {
