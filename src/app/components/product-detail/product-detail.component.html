@@ -24,8 +24,14 @@
           aria-labelledby="buttonAddProduct"
           class="product-info__addCart"
           (click)="onAddCart()">
-        <img src="./assets/icons/bt_add_to_cart.svg" alt="add to cart" />
-        <p>add to Cart</p>
+          <img src="./assets/icons/bt_add_to_cart.svg" alt="add to cart" />
+          <p>add to Cart</p>
+        </button>
+        <button
+        type="button"
+        (click)="onDelete()"
+      >
+        <p>delete</p>
       </button>
     </div>
   </div>

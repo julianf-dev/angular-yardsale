@@ -105,5 +105,20 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  onDeleteProduct(id:string){
+    this.cargandoProducts = true;
+    this.productService.delete(id)
+      .subscribe({
+        next:() => {
+          const productIndex = this.products.findIndex(data => data.id == id);
+          this.products.splice(productIndex,1);
+        },
+        error: (error) => {
+          this.cargandoProducts = false;
+          console.log(error)
+        }
+      }
+      )
+  }
 
 }

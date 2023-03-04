@@ -14,6 +14,7 @@ export class ProductDetailComponent implements  OnInit {
   disabled = false;
 
   @Output() addedProduct = new EventEmitter<Product>();
+  @Output() deleteProduct = new EventEmitter<string>();
   @Input() productChosen: Product = {
     id: '',
     price: 0,
@@ -48,6 +49,11 @@ export class ProductDetailComponent implements  OnInit {
 
   onEdit(){
     this.addedProduct.emit(this.productChosen);
+  }
+
+  onDelete(){
+    this.deleteProduct.emit(this.productChosen.id);
+    this.storeService.toogleProduct()
   }
 
 }
