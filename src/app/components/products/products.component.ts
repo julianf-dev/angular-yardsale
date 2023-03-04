@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { CreateProductDTO, Product } from 'src/app/models/product.mode';
+import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product.mode';
 import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -12,7 +12,6 @@ import { StoreService } from 'src/app/services/store.service';
 export class ProductsComponent implements OnInit {
 
   cargandoProducts = false;
-  showProduct = false;
   faClose = faClose
   myShoppingCart: Product[] = []
   total = 0
@@ -63,12 +62,10 @@ export class ProductsComponent implements OnInit {
   }
 
   toggleProductDetail(){
-    this.showProduct = !this.showProduct
-    //this.storeServices.toogleProduct();
+    this.storeServices.toogleProduct();
   }
 
   onShowDetail(id : string){
-    console.log(id)
     this.productService.getProduct(id)
     .subscribe(data => {
       this.toggleProductDetail();
@@ -76,31 +73,36 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  createNewProduct(){
+  createNewProduct():void{
     const product: CreateProductDTO = {
       title: 'new item',
       description: 'es un nuevo item',
-      images: [''],
+      images: ['https://api.lorem.space/image/fashion?w=640&h=480&r=3115'],
       price: 1000,
       categoryId: 1
     }
     this.productService.create(product)
       .subscribe(data => {
-        this.products.unshift(data);
+        this.products.push(data);
       })
   }
 
-  updateProduct(product: Partial<CreateProductDTO>){
-    console.log(product)
-   /*  const changes: UpdateProductDTO = {
-      title: 'new Title',
+  updateProduct(id:string){
+    this.cargandoProducts = true
+    const changes:updateProduct = {
+      title: 'newTitle'
     }
-    const id = this.productChosen.id;
     this.productService.update(id, changes)
-    .subscribe(data => {
-      console.log(data)
-    }) */
-
+    .subscribe({
+      next:(data) => {
+        const productIndex = this.products.findIndex(data => data.id == id);
+        this.products[productIndex] = data;
+      },
+      error: (error) => {
+        this.cargandoProducts = false
+        console.error(error);
+      },
+    })
   }
 
 

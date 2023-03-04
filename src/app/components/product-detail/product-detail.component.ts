@@ -46,4 +46,8 @@ export class ProductDetailComponent implements  OnInit {
     this.storeService.toogleProduct()
   }
 
+  onEdit(){
+    this.addedProduct.emit(this.productChosen);
+  }
+
 }

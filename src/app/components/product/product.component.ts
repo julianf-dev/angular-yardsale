@@ -20,7 +20,7 @@ export class ProductComponent{
   @Input() myProduct !: Product;
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();
-  @Output() updatedProduct = new EventEmitter<Product>();
+  @Output() updatedProduct = new EventEmitter<string>();
   disabled = false
 
 
@@ -38,7 +38,7 @@ export class ProductComponent{
   }
 
   updateProduct(){
-    this.updatedProduct.emit(this.myProduct);
+    this.updatedProduct.emit(this.myProduct.id);
   }
 }
 

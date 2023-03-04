@@ -1,13 +1,16 @@
 <div class="product">
   <app-img
-  class="product__image"
-  (click)="onShowDetail()"
-  *ngIf="myProduct.images.length > 0"
-  [imgURL]="myProduct.images[0]">
+    class="product__image"
+    (click)="onShowDetail()"
+    *ngIf="myProduct.images.length > 0"
+    [imgURL]="myProduct.images[0]"
+  >
   </app-img>
   <div class="product__info">
     <div class="product__info_detail">
-      <p class="product__info_detail-title">{{ myProduct.price | currency:'USD ' }}</p>
+      <p class="product__info_detail-title">
+        {{ myProduct.price | currency : "USD " }}
+      </p>
       <p class="product__info_detail-description">{{ myProduct.title }}</p>
     </div>
     <div
@@ -16,7 +19,13 @@
       (click)="onAddToCar()"
     >
       <app-img [imgURL]="addCartImg"></app-img>
-      <button type="button" aria-labelledby="buttonUpdate" (click)="updateProduct()">Editar</button>
     </div>
+    <button
+      type="button"
+      aria-labelledby="buttonUpdate"
+      (click)="updateProduct()"
+    >
+      Editar
+    </button>
   </div>
 </div>
