@@ -30,6 +30,8 @@ export class ProductsComponent implements OnInit {
     },
     description: ''
   }
+  limit = 10;
+  offset = 0;
 
 
   // Peticion async
@@ -42,17 +44,8 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     // Mejor momento para manejar sync
-    this.cargandoProducts = true
-    this.productService.getAllProducts()
-    .subscribe({
-      next:(products) => {
-        this.products = products;
-      },
-      error: (error) => {
-        this.cargandoProducts = false
-        console.error(error);
-      },
-    });
+    this.loadData()
+
   }
 
 
@@ -119,6 +112,24 @@ export class ProductsComponent implements OnInit {
         }
       }
       )
+  }
+
+  loadData(){
+    console.log('clicbutton')
+    this.productService.getAllProducts(this.limit, this.offset)
+    .subscribe({
+      next:(data) => {
+        this.products = this.products.concat(data);
+        this.offset += this.limit;
+        if (data.length === 0) {
+          this.offset = 0;
+        }
+      },
+      error: (error) => {
+        this.cargandoProducts = false
+        console.error(error);
+      },
+    });
   }
 
 }

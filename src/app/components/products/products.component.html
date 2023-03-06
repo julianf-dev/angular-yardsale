@@ -20,12 +20,20 @@
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product
-    *ngFor="let product of products.slice(0,20)"
+    *ngFor="let product of products"
     [myProduct]="product"
     (addedProduct)="onAddToShoppingCart($event)"
     (showProduct)="onShowDetail($event)"
     (updatedProduct)="updateProduct($event)"
   ></app-product>
+  <button
+    class="btn btn-primary"
+    type="button"
+    aria-label="loadMore"
+    (click)="loadData()"
+  >
+    Load More
+  </button>
 </div>
 <app-product-detail
   (addedProduct)="onAddToShoppingCart($event)"
