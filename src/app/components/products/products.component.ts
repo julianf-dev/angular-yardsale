@@ -60,7 +60,7 @@ export class ProductsComponent implements OnInit {
 
   onShowDetail(id : string){
     this.productService.getProduct(id)
-    .subscribe(data => {
+    .subscribe((data: Product) => {
       this.toggleProductDetail();
       this.productChosen = data;
     })
@@ -75,7 +75,7 @@ export class ProductsComponent implements OnInit {
       categoryId: 1
     }
     this.productService.create(product)
-      .subscribe(data => {
+      .subscribe((data: Product) => {
         this.products.push(data);
       })
   }
@@ -87,11 +87,11 @@ export class ProductsComponent implements OnInit {
     }
     this.productService.update(id, changes)
     .subscribe({
-      next:(data) => {
+      next:(data: Product) => {
         const productIndex = this.products.findIndex(data => data.id == id);
         this.products[productIndex] = data;
       },
-      error: (error) => {
+      error: (error: string) => {
         this.cargandoProducts = false
         console.error(error);
       },
@@ -106,7 +106,7 @@ export class ProductsComponent implements OnInit {
           const productIndex = this.products.findIndex(data => data.id == id);
           this.products.splice(productIndex,1);
         },
-        error: (error) => {
+        error: (error: string) => {
           this.cargandoProducts = false;
           console.log(error)
         }
@@ -118,14 +118,14 @@ export class ProductsComponent implements OnInit {
     console.log('clicbutton')
     this.productService.getAllProducts(this.limit, this.offset)
     .subscribe({
-      next:(data) => {
+      next:(data: Product[]) => {
         this.products = this.products.concat(data);
         this.offset += this.limit;
         if (data.length === 0) {
           this.offset = 0;
         }
       },
-      error: (error) => {
+      error: (error:string) => {
         this.cargandoProducts = false
         console.error(error);
       },
