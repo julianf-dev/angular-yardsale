@@ -1,6 +1,6 @@
-import {  Injectable } from '@angular/core';
 import { Product } from '../models/product.mode';
 import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
