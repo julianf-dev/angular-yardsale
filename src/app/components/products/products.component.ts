@@ -4,6 +4,7 @@ import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product
 import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -32,6 +33,7 @@ export class ProductsComponent implements OnInit {
   }
   limit = 10;
   offset = 0;
+  statusDetail: 'loading' | 'sucess' | 'error' | 'init' = 'init'
 
 
   // Peticion async
@@ -59,10 +61,18 @@ export class ProductsComponent implements OnInit {
   }
 
   onShowDetail(id : string){
+    this.statusDetail = 'loading'
     this.productService.getProduct(id)
-    .subscribe((data: Product) => {
-      this.toggleProductDetail();
-      this.productChosen = data;
+    .subscribe({
+      next: (data: Product) => {
+        this.toggleProductDetail();
+        this.productChosen = data;
+        this.statusDetail = 'sucess'
+      },
+      error: repoonse => {
+        this.statusDetail = 'error'
+        console.log(repoonse.error.message)
+      }
     })
   }
 
@@ -93,7 +103,12 @@ export class ProductsComponent implements OnInit {
       },
       error: (error: string) => {
         this.cargandoProducts = false
-        console.error(error);
+        Swal.fire({
+          title: 'Error!',
+          text: error,
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
       },
     })
   }
@@ -127,7 +142,12 @@ export class ProductsComponent implements OnInit {
       },
       error: (error:string) => {
         this.cargandoProducts = false
-        console.error(error);
+        Swal.fire({
+          title: 'Error!',
+          text: error,
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
       },
     });
   }

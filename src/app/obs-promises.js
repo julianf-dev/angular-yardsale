@@ -42,3 +42,11 @@ const doSomething$ = () => {
     console.log(rta)
   })
 })();
+
+
+//test formData
+const formData = new FormData()
+formData.append('archivo', 'test')
+for (const value of formData.values()) {
+  console.log(value);
+}

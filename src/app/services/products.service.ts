@@ -1,14 +1,18 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateProductDTO, Product } from '../models/product.mode';
-import { retry } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 
+import {} from '../../environments/environment'
+import { environment } from 'src/environments/environment.prod';
+import { Observable } from 'rxjs/internal/Observable';
+import { throwError } from 'rxjs/internal/observable/throwError';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private apiUrl = 'https://api.escuelajs.co/api/v1/products'
+  private apiUrl = `${environment.API_URL}/api/v1/products`
 
 
   constructor(
@@ -25,8 +29,27 @@ export class ProductsService {
     .pipe(
       retry(2)
     );
-
     // -> gracias al obserrvador podemos reintentar la petecion
+  }
+
+  getProductByPage(limit: number, offset: number): Observable<any> {
+    return this.http.get<Product[]>(this.apiUrl, {
+      params: { limit, offset }
+    })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          switch (error.status) {
+            case HttpStatusCode.ServiceUnavailable:
+              return throwError(() => new Error("Service Unavailable"))
+            case HttpStatusCode.NotFound:
+              return throwError(() => new Error("Product Not Found"))
+            case HttpStatusCode.Unauthorized:
+              return throwError(() => new Error("No has iniciado seision"))
+            default:
+              return throwError(() => new Error("Error default"))
+          }
+        })
+      );
   }
 
   getProduct(id: string){
