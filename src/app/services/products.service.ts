@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateProductDTO, Product } from '../models/product.mode';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 
 import {} from '../../environments/environment'
 import { environment } from 'src/environments/environment.prod';
@@ -27,8 +27,14 @@ export class ProductsService {
     }
     return this.http.get<Product[]>(this.apiUrl,{params})
     .pipe(
-      retry(2)
-    );
+      retry(2),
+      map(products => products.map(item => {
+        return{
+          ...item,
+          taxes:  item.price * 0.06
+        }
+      }))
+    )
     // -> gracias al obserrvador podemos reintentar la petecion
   }
 

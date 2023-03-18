@@ -2,16 +2,19 @@
   <app-img
     class="product__image"
     (click)="onShowDetail()"
-    *ngIf="myProduct.images.length > 0"
-    [imgURL]="myProduct.images[0]"
+    *ngIf="product.images.length > 0"
+    [imgURL]="product.images[0]"
   >
   </app-img>
   <div class="product__info">
     <div class="product__info_detail">
       <p class="product__info_detail-title">
-        {{ myProduct.price | currency : "USD " }}
+        {{ product.price | currency : "USD " }}
       </p>
-      <p class="product__info_detail-description">{{ myProduct.title }}</p>
+      <p class="product__info_detail-title">
+        Taxes: {{ product.taxes | currency : "USD " }}
+      </p>
+      <p class="product__info_detail-description">{{ product.title }}</p>
     </div>
     <div
       class="product__info_image"
