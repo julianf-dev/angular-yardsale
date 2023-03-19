@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angu
 import { Injectable } from '@angular/core';
 import { CreateProductDTO, Product } from '../models/product.mode';
 import { catchError, map, retry } from 'rxjs/operators';
+import { zip } from 'rxjs';
 
 import {} from '../../environments/environment'
 import { environment } from 'src/environments/environment.prod';
@@ -36,6 +37,13 @@ export class ProductsService {
       }))
     )
     // -> gracias al obserrvador podemos reintentar la petecion
+  }
+
+  readAndUpdate(id: string, dto: Partial <CreateProductDTO>){
+    return zip(
+      this.getProduct(id),
+      this.update(id, dto),
+    )
   }
 
   getProductByPage(limit: number, offset: number): Observable<any> {

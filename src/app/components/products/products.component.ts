@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { switchMap, zip } from 'rxjs';
 import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product.mode';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -152,4 +153,24 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+
+  readAndUpdate(id: string){
+    this.productService.getProduct(id)
+    .pipe(
+      switchMap((product) =>
+        this.productService.update(product.id, {title: 'change'}),
+        ),
+      switchMap((product) =>
+        this.productService.update(product.id, {title: 'change'}),
+        )
+    )
+    .subscribe(response => console.log(response));
+    this.productService.readAndUpdate(id, {title: 'change'})
+    .subscribe(
+      response => {
+        const read= response[0];
+        const update= response[1];
+      }
+    )
+  }
 }
