@@ -41,10 +41,16 @@ export class SignUpComponent {
         name: this.formRegistroUsuario.get('name').value,
         email: this.formRegistroUsuario.get('email').value,
         password: this.formRegistroUsuario.get('password').value,
+        avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867"
       }
       this.userService.create(newUser).subscribe(
         {
           next: (respuesta => {
+            Swal.fire({
+              title: 'Registro exitoso',
+              icon: 'success',
+              cancelButtonText: 'ok'
+            })
             this.router.navigate(['login'])
           }),
           error: (error =>{

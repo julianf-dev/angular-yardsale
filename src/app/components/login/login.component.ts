@@ -40,6 +40,12 @@ export class LoginComponent {
       this.autService.login(credentials).subscribe(
         {
           next: (respuesta => {
+            console.log(respuesta.access_token)
+            Swal.fire({
+              title: 'Exito',
+              icon: 'success',
+              cancelButtonText: 'ok'
+            })
             this.router.navigate(['products'])
           }),
           error: (error =>{

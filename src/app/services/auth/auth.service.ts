@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
+import { AuthModel } from 'src/app/models/auth.model';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class AuthService {
   ) { }
 
   login(user: Partial <User>){
-    return this.http.post<User>(`${this.apiUrl}/login`,user)
+    return this.http.post<AuthModel>(`${this.apiUrl}/login`,user)
   }
 
   profile(token: string){
