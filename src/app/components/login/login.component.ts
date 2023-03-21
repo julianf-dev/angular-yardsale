@@ -57,7 +57,7 @@ export class LoginComponent {
   }
 
   registrarse(){
-    console.log('Entro a este registrase')
+
     this.router.navigate(['registrarse'])
   }
 }

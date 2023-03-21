@@ -1,26 +1,24 @@
 @import '../../../styles/vars';
 
-
 .show-mobile {
   width: 100%;
   padding: 1em;
-  box-shadow: 0px 2px 5px rgb(black, .2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   position: fixed;
   height: 60px;
-  background-color: $white;
-  > div {
+  background: $white;
+
+  >div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    button {
-      border: 0;
-      background: transparent;
-    }
   }
-  &__button{
+
+  &__button {
     cursor: pointer;
   }
-  .side-menu{
+
+  .side-menu {
     height: auto;
     position: fixed;
     top: 60px;
@@ -31,127 +29,145 @@
     flex-direction: column;
     justify-content: stretch;
     align-items: flex-start;
-    padding: 0 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     transform: translateX(-100%);
-    transition: all ease-out .5s;
+    transition: all ease-out 0.5s;
     font-weight: 700;
-    &__close{
+
+    &__close {
       width: 20px;
-      font-size: $lg;
+      font-size: var(--lg);
       align-self: flex-end;
       color: $very-light-pink;
-      &:hover{
+
+      &:hover {
         color: black;
         border-radius: 50%;
-        background-color: $hospital-green;
+        background: $hospital-green;
         cursor: pointer;
       }
     }
-    &__list{
-      &__title{
+
+    &__list {
+      &__title {
         margin-top: 2rem;
       }
+
       width: 80vw;
-      box-shadow: 0px 2px 0px rgb(black, .2);
-      & p{
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+
+      & p {
         padding: 20px 0;
       }
-      & ul{
+
+      & ul {
         display: flex;
         flex-direction: column;
         gap: 24px;
-        :first-child{
+
+        :first-child {
           margin-top: 24px;
         }
-        :last-child{
-          margin-bottom: 24px;
 
+        :last-child {
+          margin-bottom: 24px;
         }
       }
     }
+
     &.active {
       transform: translateX(0);
     }
   }
 }
+
 .hide-mobile {
   display: none;
-  box-shadow: 0px 2px 5px rgb(black, .2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
   .header {
     padding: 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .nav {
       display: flex;
       align-items: center;
+
       &__logo {
         margin-right: 1em;
       }
+
       &__list {
         display: flex;
         list-style: none;
+
         a {
-          margin: 0 .2em;
-          color: $very-light-pink;
+          margin-left:0.2em;
+          margin-right:0.2em;
+          color: var(--very-light-pink);
           text-decoration: none;
           padding: 8px;
           border-radius: 8px;
         }
+
         a:hover {
-          border: 1px solid $hospital-green;
-          color: $hospital-green;
+          border: 1px solid var(--hospital-green);
+          color: var(--hospital-green);
           cursor: pointer;
         }
       }
+
       &__info {
         display: flex;
         align-items: center;
+
         &-account {
-          color: $very-light-pink;
-          margin-right: .5em;
+          color: var(--very-light-pink);
+          margin-right: 0.5em;
         }
       }
     }
+
+    .cart {
+      position: relative;
+
+      .span-cart {
+        width: 1.2rem;
+        height: 1.2rem;
+        background: var(--hospital-green);
+        border-radius: 50%;
+        font-size: var(--sm);
+        font-weight: 500;
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        display: block;
+        text-align: center;
+        line-height: 20px;
+        color: var(--white);
+      }
+    }
   }
-
 }
 
-.cart{
-  position: relative;
-}
-
-.span-cart{
-  width: 1.2rem;
-	height: 1.2rem;
-	background-color: $hospital-green;
-	border-radius: 50%;
-	font-size: var(--sm);
-	font-weight: 500;
-	position: absolute;
-	top: -6px;
-	right: -6px;
-	display: block;
-  text-align: center;
-  line-height: 20px;
-  color: $white;
-}
-
-/* Medium only */
 @media screen and (min-width: 575.98px) and (max-width: 1199.98px) {
-  .show-mobile{
+  .show-mobile {
     display: none;
   }
+
   .hide-mobile {
     display: block;
   }
 }
 
-/* Large and up */
 @media screen and (min-width: 1199.99px) {
   .show-mobile {
     display: none;
   }
+
   .hide-mobile {
     display: block;
   }
