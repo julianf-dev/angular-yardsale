@@ -20,6 +20,7 @@ import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CargandoComponent } from './components/cargando/cargando.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar])
@@ -36,7 +37,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     HighLightDirective,
     ProductDetailComponent,
     CargandoComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

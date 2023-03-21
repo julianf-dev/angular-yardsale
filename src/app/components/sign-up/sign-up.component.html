@@ -1,0 +1,23 @@
+<section class="container_form">
+  <form id="formulario" [formGroup]="formRegistroUsuario" (ngSubmit)="signUp()">
+    <div class="form-controls">
+      <label for="usuario">Name: </label>
+      <input type="text" class="form-control" placeholder="Jhon Dute" formControlName="name">
+    </div>
+    <div class="form-controls">
+      <label for="usuario">Email Adress: </label>
+      <input type="text" class="form-control" placeholder="youremail@mail.com" formControlName="email">
+    </div>
+    <div class="form-controls">
+      <label for="contrasenia">Password: </label>
+      <input type="password" class="form-control" placeholder="**********" formControlName="password">
+    </div>
+    <div class="form-controls">
+      <label for="contrasenia">Confirm Password: </label>
+      <input type="password" class="form-control" placeholder="**********" formControlName="password_confirm">
+    </div>
+    <button type="submit" class="btn">
+      Sign up
+    </button>
+  </form>
+</section>

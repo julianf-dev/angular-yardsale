@@ -1,0 +1,62 @@
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { UsersService } from 'src/app/services/users/users.service';
+import Swal from 'sweetalert2';
+
+@Component({
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss']
+})
+export class SignUpComponent {
+
+  formRegistroUsuario: any;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UsersService,
+    private router: Router,
+    ) {
+    this.buildForm()
+  }
+
+  buildForm(){
+    this.formRegistroUsuario = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      password: ['', [Validators.required,Validators.minLength(6)]],
+      password_confirm: ['', [Validators.required,Validators.minLength(6)]],
+    },{
+      validators: [
+        //to DO servicios validacion
+      ]
+    });
+  }
+
+  signUp(){
+    if(this.formRegistroUsuario.valid){
+      let newUser = {
+        name: this.formRegistroUsuario.get('name').value,
+        email: this.formRegistroUsuario.get('email').value,
+        password: this.formRegistroUsuario.get('password').value,
+      }
+      this.userService.create(newUser).subscribe(
+        {
+          next: (respuesta => {
+            this.router.navigate(['login'])
+          }),
+          error: (error =>{
+            Swal.fire({
+              title: 'No pudo ingresar',
+              text: error,
+              icon: 'error',
+              cancelButtonText: 'ok'
+            })
+          })
+        }
+      )
+    }
+  }
+}
