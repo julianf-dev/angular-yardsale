@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { switchMap, zip } from 'rxjs';
-import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product.mode';
+import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -166,7 +166,7 @@ export class ProductsComponent implements OnInit {
     )
     .subscribe(response => console.log(response));
     this.productService.readAndUpdate(id, {title: 'change'})
-    .subscribe(
+      .subscribe(
       response => {
         const read= response[0];
         const update= response[1];

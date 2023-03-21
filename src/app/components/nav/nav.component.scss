@@ -95,6 +95,13 @@
           margin: 0 .2em;
           color: $very-light-pink;
           text-decoration: none;
+          padding: 8px;
+          border-radius: 8px;
+        }
+        a:hover {
+          border: 1px solid $hospital-green;
+          color: $hospital-green;
+          cursor: pointer;
         }
       }
       &__info {

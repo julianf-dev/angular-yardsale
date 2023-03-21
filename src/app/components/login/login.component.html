@@ -1,0 +1,18 @@
+<section class="container_form">
+  <form id="formulario" [formGroup]="formLogin" (ngSubmit)="signUp()">
+    <div class="form-controls">
+      <label for="usuario">Email Adress: </label>
+      <input type="text" class="form-control" placeholder="youremail@mail.com" formControlName="name_user">
+    </div>
+    <div class="form-controls">
+      <label for="contrasenia">Password: </label>
+      <input type="password" class="form-control" placeholder="**********" formControlName="password">
+    </div>
+    <div>
+      <a routerLink=[]>Forgot my password</a>
+    </div>
+    <button type="button" class="btn">
+      Sign up
+    </button>
+  </form>
+</section>

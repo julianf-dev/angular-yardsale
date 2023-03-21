@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateProductDTO, Product } from '../models/product.mode';
+import { CreateProductDTO, Product } from '../models/product.model';
 import { catchError, map, retry } from 'rxjs/operators';
 import { zip } from 'rxjs';
 

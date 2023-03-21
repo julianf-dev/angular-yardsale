@@ -83,3 +83,23 @@ a{
 .email{
   color: $hospital-green;
 }
+
+.btn {
+	background-color: $hospital-green;
+	border-radius: 8px;
+	border: none;
+	color: white;
+	width: 100%;
+	cursor: pointer;
+	font-size: $md;
+	font-weight: bold;
+	height: 2.5rem;
+	margin-top: 1rem;
+	margin-bottom: 1.875rem;
+}
+.btn-secondary {
+	height: 44px;
+	background-color: white;
+	color: $hospital-green;
+	border: 1px solid $hospital-green;
+}

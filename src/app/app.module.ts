@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,6 +19,7 @@ import { SwiperModule } from 'swiper/angular';
 import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CargandoComponent } from './components/cargando/cargando.component';
+import { LoginComponent } from './components/login/login.component';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar])
@@ -34,7 +35,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     vocalChangePipe,
     HighLightDirective,
     ProductDetailComponent,
-    CargandoComponent
+    CargandoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     FormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    SwiperModule
+    SwiperModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
