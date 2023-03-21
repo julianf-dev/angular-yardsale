@@ -9,7 +9,7 @@ building...
 ### Set up 🔧
 
 ```
-git clone  https://github.com/julianf-dev/angular-presupuesto.git
+git clone  https://github.com/julianf-dev/angular-yardsale.git
 ```
 
 ```
