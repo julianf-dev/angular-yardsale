@@ -131,7 +131,6 @@ export class ProductsComponent implements OnInit {
   }
 
   loadData(){
-    console.log('clicbutton')
     this.productService.getAllProducts(this.limit, this.offset)
     .subscribe({
       next:(data: Product[]) => {

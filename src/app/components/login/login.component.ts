@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/models/login.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import Swal from 'sweetalert2';
@@ -24,7 +23,7 @@ export class LoginComponent {
     this.buildForm()
   }
 
-  buildForm(){
+  private buildForm(){
     this.formLogin = this.formBuilder.group({
       name_user: ['', Validators.required],
       password: ['', Validators.required],
@@ -37,21 +36,17 @@ export class LoginComponent {
         email: this.formLogin.get('name_user').value,
         password: this.formLogin.get('password').value,
       }
-      this.autService.login(credentials).subscribe(
+      this.autService.login(credentials)
+      .subscribe(
         {
           next: (respuesta => {
-            console.log(respuesta.access_token)
-            Swal.fire({
-              title: 'Exito',
-              icon: 'success',
-              cancelButtonText: 'ok'
-            })
+            this.userService.setUsuario(respuesta.access_token)
             this.router.navigate(['products'])
           }),
           error: (error =>{
             Swal.fire({
               title: 'No pudo ingresar',
-              text: error,
+              text: 'Verifique sus credenciales',
               icon: 'error',
               cancelButtonText: 'ok'
             })
@@ -60,4 +55,10 @@ export class LoginComponent {
       )
     }
   }
+
+  registrarse(){
+    console.log('Entro a este registrase')
+    this.router.navigate(['registrarse'])
+  }
 }
+

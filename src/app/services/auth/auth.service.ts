@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
 import { AuthModel } from 'src/app/models/auth.model';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -16,11 +17,26 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
+  getHttpHeaders() {
+    const token = localStorage.getItem('platzi_token');
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    };
+  }
+
   login(user: Partial <User>){
     return this.http.post<AuthModel>(`${this.apiUrl}/login`,user)
   }
 
-  profile(token: string){
-    return this.http.post<User>(`${this.apiUrl}/profile`,token)
+  getProfileUser(token: string): Observable<User> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`)
+    return this.http.get<User>(`${this.apiUrl}/profile`,{headers});
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem('platzi_token')
   }
 }

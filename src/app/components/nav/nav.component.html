@@ -51,13 +51,21 @@
           <li><a [routerLink]="['/products']"  >All</a></li>
           <li><a [routerLink]="['/']"  >Clothes</a></li>
           <li><a [routerLink]="['/']"  >Electronics</a></li>
-          <li><a [routerLink]="['/login']"  >Login</a></li>
-          <li><a [routerLink]="['/registro']"  >Sign Up</a></li>
         </ul>
       </div>
     </nav>
     <div class="nav__info">
-      <div class="nav__info-account">nicolas@nicolas.com</div>
+      <div *ngIf="!token;else elseBlock" (click)="getProfileAndUser()">
+        <ul class="nav__list">
+          <li><a [routerLink]="['login']" >Login</a></li>
+        </ul>
+      </div>
+      <ng-template #elseBlock>
+        <div class="nav__info-account">{{profile?.name}}</div>
+        <ul class="nav__list">
+          <li><a (click)="logOut()" >Log Out</a></li>
+        </ul>
+      </ng-template>
       <div class="cart">
         <img src="./assets/icons/icon_shopping_cart.svg" alt="logo">
         <span class="span-cart"   *ngIf="counter > 9; else lessLength">+9</span>
