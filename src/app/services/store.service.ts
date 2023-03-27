@@ -36,6 +36,7 @@ export class StoreService {
 
   getTotal(){
     return this.myShoppingCart.reduce((sum, item) => sum + item.price,0 );
+    console.log('token')
   }
 
   getLength(){
