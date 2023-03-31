@@ -32,6 +32,7 @@ export class AuthService {
 
   getProfileUser(token: string): Observable<User> {
     let headers = new HttpHeaders();
+    // Es importante el espacio, sin el espacio puede ocurrir errores
     headers = headers.set('Authorization', `Bearer ${token}`)
     return this.http.get<User>(`${this.apiUrl}/profile`,{headers});
   }
@@ -39,4 +40,6 @@ export class AuthService {
   cerrarSesion(){
     localStorage.removeItem('platzi_token')
   }
+
+
 }
