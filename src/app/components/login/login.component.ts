@@ -63,32 +63,16 @@ export class LoginComponent {
     this.router.navigate(['registrarse'])
   }
 
-/*   loginAndGetProfile(){
+  loginAndUpdate(){
     if(this.formLogin.valid){
       let credentials ={
         email: this.formLogin.get('name_user').value,
         password: this.formLogin.get('password').value,
       }
-    this.autService.login(credentials)
-    .pipe(
-      switchMap((token) => {
-        this.token = token.access_token;
-        return this.autService.getUser(token.access_token)
-      })
-    )
-    .subscribe({
-      next: (user =>  this.profile = user),
-      error:  (err => {
-      this.createdUser = !this.createdUser;
-      Swal.fire({
-        title: err.error.statusCode,
-        text: err.error.message,
-        icon: 'error',
-        confirmButtonText: 'Close'
-        })
-      })
-    });
+      this.autService.loginAndGetProfile(credentials)
+      .subscribe(user => this.profile = user)
     }
-  } */
+  }
+
 }
 

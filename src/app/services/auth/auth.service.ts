@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
 import { AuthModel } from 'src/app/models/auth.model';
-import { Observable, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { TokenService } from '../token/token.service';
 
 
@@ -42,4 +42,10 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}/profile`);
   }
 
+  loginAndGetProfile(credenciales: Partial<User>){
+    return this.login(credenciales)
+    .pipe(
+      switchMap(() => this.getUser())
+    )
+  }
 }
