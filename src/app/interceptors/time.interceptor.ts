@@ -6,6 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators'
 
 //a diferencia de los otros no trael app-root
 @Injectable()
@@ -18,8 +19,11 @@ export class TimeInterceptor implements HttpInterceptor {
     return next
     .handle(request)
     .pipe(
-      //Nos permtie ejecutar un proceso
-      tap()
+      //Nos permite correr un proceso
+      tap(() => {
+        const time = (performance.now() - start + 'ms');
+        console.log(request.url, time)
+      })
     );
   }
 }

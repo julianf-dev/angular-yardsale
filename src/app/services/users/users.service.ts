@@ -14,9 +14,6 @@ export class UsersService {
     private http: HttpClient
   ) { }
 
-  setUsuario(access_token: string){
-    localStorage.setItem('platzi_token', access_token)
-  }
   create(dto: CreateUserDTO){
     return this.http.post<User>(this.apiUrl,dto)
   }
@@ -27,10 +24,6 @@ export class UsersService {
 
   getById(id:string){
     return this.http.get<User>(`${this.apiUrl}/${id}`)
-  }
-
-  getTokenUser(){
-    return localStorage.getItem('platzi_token');
   }
 
 }

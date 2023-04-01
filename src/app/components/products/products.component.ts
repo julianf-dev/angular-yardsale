@@ -72,7 +72,6 @@ export class ProductsComponent implements OnInit {
       },
       error: repoonse => {
         this.statusDetail = 'error'
-        console.log(repoonse.error.message)
       }
     })
   }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,11 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { CargandoComponent } from './components/cargando/cargando.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { TimeInterceptor } from './interceptors/time.interceptor';
+import { TokenInterceptor } from './interceptors/token/token.interceptor';
+
+
+//Los interceptor tocan de ofrma manual
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar])
@@ -49,7 +54,10 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     SwiperModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi:true},
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

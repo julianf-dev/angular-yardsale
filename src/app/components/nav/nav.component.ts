@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import Swal from 'sweetalert2';
 import { UsersService } from 'src/app/services/users/users.service';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-nav',
@@ -18,11 +19,11 @@ export class NavComponent implements OnInit {
   counter = 0
   faClose = faClose
   profile: User | null = null
-  token: any
 
   constructor(
     private storeService:StoreService,
     private authService: AuthService,
+    private tokenService: TokenService,
     private router: Router
     ) {
   }
@@ -34,16 +35,15 @@ export class NavComponent implements OnInit {
     this.storeService.myCart$.subscribe(products => {
       this.counter = products.length
     })
-    this.getProfileAndUser()
+    this.getUser()
   }
 
   toggleMenu(){
     this.activeMenu = !this.activeMenu;
   }
 
-  getProfileAndUser(){
-    this.token = localStorage.getItem('platzi_token');
-    this.authService.getProfileUser(this.token)
+  getUser(){
+    this.authService.getUser()
     .subscribe({
       next: (respuesta) => {
         this.profile = respuesta
@@ -60,9 +60,8 @@ export class NavComponent implements OnInit {
   }
 
   logOut(){
-    this.authService.cerrarSesion();
+    this.tokenService.removeToken();
     this.router.navigate(['login'])
-
   }
 
 }

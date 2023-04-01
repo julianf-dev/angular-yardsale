@@ -1,15 +1,38 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
-  private apiUrl = `${environment.API_URL}/api/v1/auth`
 
   constructor(
-    private http: HttpClient
+    private cookieService: CookieService
   ) { }
+
+  saveToken(token: string){
+    this.cookieService.deleteAll('/');
+    this.cookieService.set("token", token)
+  }
+
+  getToken(){
+    return this.cookieService.get("token")
+  }
+
+  removeToken() {
+    this.cookieService.deleteAll('/')
+    this.cookieService.delete("token", '/');
+  }
+
+
+  //Con local storage
+
+  setUsuario(access_token: string){
+    localStorage.setItem('platzi_token', access_token)
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem('platzi_token')
+  }
 }

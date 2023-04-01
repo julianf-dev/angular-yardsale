@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import Swal from 'sweetalert2';
 import { User } from 'c:/Users/julian-pc/Documents/dev/angular-yardstore/src/app/models/user.model';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,12 @@ import { User } from 'c:/Users/julian-pc/Documents/dev/angular-yardstore/src/app
 export class LoginComponent {
 
   formLogin: any;
-  token: string = '';
   profile: User | null = null
   createdUser: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private autService: AuthService,
-    private userService: UsersService,
     private router: Router,
     ) {
     this.buildForm()
@@ -35,7 +34,7 @@ export class LoginComponent {
     });
   }
 
-  signIn(){
+  login(){
     if(this.formLogin.valid){
       let credentials ={
         email: this.formLogin.get('name_user').value,
@@ -44,8 +43,7 @@ export class LoginComponent {
       this.autService.login(credentials)
       .subscribe(
         {
-          next: (respuesta => {
-            this.userService.setUsuario(respuesta.access_token)
+          next: (() => {
             this.router.navigate(['products'])
           }),
           error: (error =>{
@@ -65,7 +63,7 @@ export class LoginComponent {
     this.router.navigate(['registrarse'])
   }
 
-  loginAndGetProfile(){
+/*   loginAndGetProfile(){
     if(this.formLogin.valid){
       let credentials ={
         email: this.formLogin.get('name_user').value,
@@ -75,7 +73,7 @@ export class LoginComponent {
     .pipe(
       switchMap((token) => {
         this.token = token.access_token;
-        return this.autService.getProfileUser(token.access_token)
+        return this.autService.getUser(token.access_token)
       })
     )
     .subscribe({
@@ -91,6 +89,6 @@ export class LoginComponent {
       })
     });
     }
-  }
+  } */
 }
 

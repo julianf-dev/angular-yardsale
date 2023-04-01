@@ -3,7 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
 import { AuthModel } from 'src/app/models/auth.model';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { TokenService } from '../token/token.service';
 
 
 @Injectable({
@@ -14,7 +15,8 @@ export class AuthService {
   private apiUrl = `${environment.API_URL}/api/v1/auth`
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private tokenservice: TokenService,
   ) { }
 
   getHttpHeaders() {
@@ -28,18 +30,16 @@ export class AuthService {
 
   login(user: Partial <User>){
     return this.http.post<AuthModel>(`${this.apiUrl}/login`,user)
+    .pipe(
+      tap((response) => this.tokenservice.saveToken(response.access_token))
+    )
   }
 
-  getProfileUser(token: string): Observable<User> {
-    let headers = new HttpHeaders();
-    // Es importante el espacio, sin el espacio puede ocurrir errores
-    headers = headers.set('Authorization', `Bearer ${token}`)
-    return this.http.get<User>(`${this.apiUrl}/profile`,{headers});
+  getUser(): Observable<User> {
+    /*let headers = new HttpHeaders();
+    Es importante el espacio, sin el espacio puede ocurrir errores
+     headers = headers.set('Authorization', `Bearer ${token}`) */
+    return this.http.get<User>(`${this.apiUrl}/profile`);
   }
-
-  cerrarSesion(){
-    localStorage.removeItem('platzi_token')
-  }
-
 
 }

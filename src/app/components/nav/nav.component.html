@@ -55,7 +55,7 @@
       </div>
     </nav>
     <div class="nav__info">
-      <div *ngIf="!token;else elseBlock" (click)="getProfileAndUser()">
+      <div *ngIf="!profile;else elseBlock">
         <ul class="nav__list">
           <li><a [routerLink]="['login']" >Login</a></li>
         </ul>
