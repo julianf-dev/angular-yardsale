@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { switchMap, zip } from 'rxjs';
+import { elementAt, switchMap, zip } from 'rxjs';
 import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product.model';
+import { FilesService } from 'src/app/services/files/files.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -35,12 +36,14 @@ export class ProductsComponent implements OnInit {
   limit = 10;
   offset = 0;
   statusDetail: 'loading' | 'sucess' | 'error' | 'init' = 'init'
+  imgRta:string = ''
 
 
   // Peticion async
   constructor(
     private storeServices: StoreService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private filesService: FilesService
   ) {
     this.myShoppingCart = this.storeServices.getShopingCart()
   }
@@ -170,5 +173,21 @@ export class ProductsComponent implements OnInit {
         const update= response[1];
       }
     )
+  }
+
+  dowloadPDF(){
+    this.filesService.getFile('myImage.pdf','https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
+    .subscribe()
+  }
+
+  onUpload(event: Event){
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0)
+    if(file){
+      this.filesService.uploadFiles(file)
+      .subscribe( rta => {
+        this.imgRta = rta.location
+      })
+    }
   }
 }

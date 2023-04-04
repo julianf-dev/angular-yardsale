@@ -20,6 +20,13 @@
 <div>
   <a href="../../../assets/files/texto.txt" download>Descargar</a>
 </div>
+<div>
+  <button type="button" class="btn" (click)="dowloadPDF()">Descargar PDF</button>
+</div>
+<div>
+  <input type="file" (change)="onUpload($event)">
+  <img *ngIf="imgRta" [src]="imgRta">
+</div>
 <button type="button" aria-labelledby="buttonCreate" (click)="createNewProduct()">create</button>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
