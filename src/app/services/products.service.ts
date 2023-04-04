@@ -8,6 +8,7 @@ import {} from '../../environments/environment'
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { checkTime } from '../interceptors/time.interceptor';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +27,7 @@ export class ProductsService {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
-    return this.http.get<Product[]>(this.apiUrl,{params})
+    return this.http.get<Product[]>(this.apiUrl,{params, context: checkTime()})
     .pipe(
       retry(2),
       map(products => products.map(item => {

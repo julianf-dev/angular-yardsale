@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { AuthModel } from 'src/app/models/auth.model';
 import { Observable, switchMap, tap } from 'rxjs';
 import { TokenService } from '../token/token.service';
+import { addToken } from 'src/app/interceptors/token/token.interceptor';
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class AuthService {
   }
 
   login(user: Partial <User>){
-    return this.http.post<AuthModel>(`${this.apiUrl}/login`,user)
+    return this.http.post<AuthModel>(`${this.apiUrl}/login`,user, { context: addToken()})
     .pipe(
       tap((response) => this.tokenservice.saveToken(response.access_token))
     )
