@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { faPenToSquare} from '@fortawesome/free-solid-svg-icons'
+
 
 @Component({
   selector: 'app-product',
@@ -28,7 +30,7 @@ export class ProductComponent{
   @Output() showProduct = new EventEmitter<string>();
   @Output() updatedProduct = new EventEmitter<string>();
   disabled = false
-
+  faEdit = faPenToSquare
 
   addCartImg = '/assets/icons/bt_add_to_cart.svg'
 

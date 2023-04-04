@@ -23,12 +23,11 @@
     >
       <app-img [imgURL]="addCartImg"></app-img>
     </div>
-    <button
-      type="button"
-      aria-labelledby="buttonUpdate"
+    <div
       (click)="updateProduct()"
+      class="product__info_image"
     >
-      Editar
-    </button>
+      <fa-icon class="icon-edit" [icon]="faEdit"></fa-icon>
+    </div>
   </div>
 </div>

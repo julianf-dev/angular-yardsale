@@ -84,8 +84,8 @@ a{
   color: $hospital-green;
 }
 
-.btn {
-	background-color: $hospital-green;
+.btn{
+	background: $hospital-green;
 	border-radius: 8px;
 	border: none;
 	color: white;
@@ -96,6 +96,7 @@ a{
 	height: 2.5rem;
 	margin-top: 1rem;
 }
+
 .btn-secondary {
 	height: 44px;
 	background-color: white;

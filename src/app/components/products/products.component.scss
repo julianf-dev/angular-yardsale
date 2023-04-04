@@ -1,6 +1,5 @@
 button{
   border: none;
-  background: none;
 }
 
 .products--grid{
@@ -10,6 +9,30 @@ button{
   gap: 1rem;
 }
 
+.container-archivos{
+  display: flex;
+  flex-direction: column;
+  background: #e7e7e7;
+  row-gap: .5rem;
+  padding: .5rem;
+  & a{
+    border-radius: 8px;
+    text-align: center;
+    padding: .5rem;
+    width: 200px;
+    border: 1px solid white;
+    color: white;
+  }
+  .btn{
+    margin-top: 0;
+    width: 200px;
+    border: 1px solid white;
+  }
+}
+
+.btn{
+  width: 200px;
+}
 
 
 // tablets and desktop

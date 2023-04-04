@@ -16,18 +16,19 @@
 <p>
   Total: {{total}}
 </p> -->
-<app-nav></app-nav>
-<div>
+<div class="container-archivos">
+  <span>Test descargar con etiqueta a</span>
   <a href="../../../assets/files/texto.txt" download>Descargar</a>
-</div>
-<div>
+  <span>Descargar mediante un boton</span>
   <button type="button" class="btn" (click)="dowloadPDF()">Descargar PDF</button>
+  <span>Cargar archivos mediante un file  input</span>
+  <div>
+    <input type="file" (change)="onUpload($event)">
+    <img *ngIf="imgRta" [src]="imgRta">
+  </div>
+  <span>Crear un nuevo producto</span>
+  <button type="button" class="btn" aria-labelledby="buttonCreate" (click)="createNewProduct()">create</button>
 </div>
-<div>
-  <input type="file" (change)="onUpload($event)">
-  <img *ngIf="imgRta" [src]="imgRta">
-</div>
-<button type="button" aria-labelledby="buttonCreate" (click)="createNewProduct()">create</button>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product
@@ -38,10 +39,10 @@
     (updatedProduct)="updateProduct($event)"
   ></app-product>
   <button
-    class="btn btn-primary"
+    class="btn"
     type="button"
     aria-label="loadMore"
-    (click)="loadData()"
+    (click)="loadMore()"
   >
     Load More
   </button>
@@ -52,4 +53,4 @@
   [productChosen]="productChosen"
 >
 </app-product-detail>
-<app-cargando *ngIf="cargandoProducts"></app-cargando>
+<app-cargando *ngIf="loadingProducts"></app-cargando>

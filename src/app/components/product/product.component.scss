@@ -44,3 +44,14 @@ p, h2{
 	cursor: pointer;
 }
 
+.icon-edit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  margin-left: 6px;
+  border-radius: 20px;
+  color: white;
+  background: $hospital-green;
+}

@@ -37,7 +37,7 @@
 
     &__close {
       width: 20px;
-      font-size: var(--lg);
+      font-size: $lg;
       align-self: flex-end;
       color: $very-light-pink;
 
@@ -107,15 +107,15 @@
         a {
           margin-left:0.2em;
           margin-right:0.2em;
-          color: var(--very-light-pink);
+          color: $very-light-pink;
           text-decoration: none;
           padding: 8px;
           border-radius: 8px;
         }
 
         a:hover {
-          border: 1px solid var(--hospital-green);
-          color: var(--hospital-green);
+          border: 1px solid $hospital-green;
+          color: $hospital-green;
           cursor: pointer;
         }
       }
@@ -125,7 +125,7 @@
         align-items: center;
 
         &-account {
-          color: var(--very-light-pink);
+          color: $very-light-pink;
           margin-right: 0.5em;
         }
       }
@@ -137,9 +137,9 @@
       .span-cart {
         width: 1.2rem;
         height: 1.2rem;
-        background: var(--hospital-green);
+        background: $hospital-green;
         border-radius: 50%;
-        font-size: var(--sm);
+        font-size: $sm;
         font-weight: 500;
         position: absolute;
         top: -6px;
@@ -147,7 +147,7 @@
         display: block;
         text-align: center;
         line-height: 20px;
-        color: var(--white);
+        color: $white;
       }
     }
   }

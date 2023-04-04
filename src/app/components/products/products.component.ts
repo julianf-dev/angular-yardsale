@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { elementAt, switchMap, zip } from 'rxjs';
 import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product.model';
@@ -12,15 +12,14 @@ import Swal from 'sweetalert2';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent{
 
-  cargandoProducts = false;
+  loadingProducts = false;
   faClose = faClose
   myShoppingCart: Product[] = []
   total = 0
   today = new Date();
   date = new Date(2021,2,21)
-  products: Product[] = [];
   productChosen: Product = {
     id: '',
     price: 0,
@@ -33,11 +32,11 @@ export class ProductsComponent implements OnInit {
     },
     description: ''
   }
-  limit = 10;
-  offset = 0;
+
   statusDetail: 'loading' | 'sucess' | 'error' | 'init' = 'init'
   imgRta:string = ''
-
+  @Input() products: Product[] = [];
+  @Output() loadProducts = new EventEmitter();
 
   // Peticion async
   constructor(
@@ -48,11 +47,6 @@ export class ProductsComponent implements OnInit {
     this.myShoppingCart = this.storeServices.getShopingCart()
   }
 
-  ngOnInit(): void {
-    // Mejor momento para manejar sync
-    this.loadData()
-
-  }
 
 
   onAddToShoppingCart( product: Product){
@@ -94,7 +88,7 @@ export class ProductsComponent implements OnInit {
   }
 
   updateProduct(id:string){
-    this.cargandoProducts = true
+    this.loadingProducts = true
     const changes:updateProduct = {
       title: 'newTitle'
     }
@@ -105,7 +99,7 @@ export class ProductsComponent implements OnInit {
         this.products[productIndex] = data;
       },
       error: (error: string) => {
-        this.cargandoProducts = false
+        this.loadingProducts = false
         Swal.fire({
           title: 'Error!',
           text: error,
@@ -117,7 +111,7 @@ export class ProductsComponent implements OnInit {
   }
 
   onDeleteProduct(id:string){
-    this.cargandoProducts = true;
+    this.loadingProducts = true;
     this.productService.delete(id)
       .subscribe({
         next:() => {
@@ -125,33 +119,15 @@ export class ProductsComponent implements OnInit {
           this.products.splice(productIndex,1);
         },
         error: (error: string) => {
-          this.cargandoProducts = false;
+          this.loadingProducts = false;
           console.log(error)
         }
       }
       )
   }
 
-  loadData(){
-    this.productService.getAllProducts(this.limit, this.offset)
-    .subscribe({
-      next:(data: Product[]) => {
-        this.products = this.products.concat(data);
-        this.offset += this.limit;
-        if (data.length === 0) {
-          this.offset = 0;
-        }
-      },
-      error: (error:string) => {
-        this.cargandoProducts = false
-        Swal.fire({
-          title: 'Error!',
-          text: error,
-          icon: 'error',
-          confirmButtonText: 'Ok',
-        });
-      },
-    });
+  loadMore(){
+    this.loadProducts.emit()
   }
 
 
