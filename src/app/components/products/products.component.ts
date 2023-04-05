@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
 })
 export class ProductsComponent{
 
-  loadingProducts = false;
   faClose = faClose
   myShoppingCart: Product[] = []
   total = 0
@@ -33,10 +32,13 @@ export class ProductsComponent{
     description: ''
   }
 
+  limit = 10;
+  offset = 0;
+  products: Product[] = [];
+  loadingProducts:boolean = false;
+
   statusDetail: 'loading' | 'sucess' | 'error' | 'init' = 'init'
   imgRta:string = ''
-  @Input() products: Product[] = [];
-  @Output() loadProducts = new EventEmitter();
 
   // Peticion async
   constructor(
@@ -47,7 +49,31 @@ export class ProductsComponent{
     this.myShoppingCart = this.storeServices.getShopingCart()
   }
 
+  ngOnInit(): void {
+    this.loadData()
+  }
 
+  loadData(){
+    this.productService.getAllProducts(this.limit, this.offset)
+    .subscribe({
+      next:(data: Product[]) => {
+        this.products = this.products.concat(data);
+        this.offset += this.limit;
+        if (data.length === 0) {
+          this.offset = 0;
+        }
+      },
+      error: (error:string) => {
+        this.loadingProducts = false
+        Swal.fire({
+          title: 'Error!',
+          text: error,
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
+      },
+    });
+  }
 
   onAddToShoppingCart( product: Product){
     this.storeServices.addProduct(product)
@@ -127,7 +153,8 @@ export class ProductsComponent{
   }
 
   loadMore(){
-    this.loadProducts.emit()
+    this.loadData()
+    //this.loadProducts.emit()
   }
 
 

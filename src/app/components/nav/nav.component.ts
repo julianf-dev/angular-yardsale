@@ -4,7 +4,6 @@ import { faClose} from '@fortawesome/free-solid-svg-icons'
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import Swal from 'sweetalert2';
-import { UsersService } from 'src/app/services/users/users.service';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token/token.service';
 
