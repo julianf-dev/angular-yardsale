@@ -22,12 +22,7 @@
         <p class="side-menu__title">CATEGORIES</p>
         <ul>
           <li><a [routerLink]="['/home/products']"  >All</a></li>
-          <li><a [routerLink]="['/home/products']"  >Clothes</a></li>
-          <li><a [routerLink]="['/home/products']"  >Electronics</a></li>
-          <li><a [routerLink]="['/home/products']"  >Furnitures</a></li>
-          <li><a [routerLink]="['/home/products']"  >Toys</a></li>
-          <li><a [routerLink]="['/home/products']"  >Others</a></li>
-          <li><a [routerLink]="['/']"  >Login</a></li>
+          <li *ngFor="let category of categoriasFiltradas"><a [routerLink]="['/home/category/', category.id]"  >{{ category.name}}</a></li>
         </ul>
     </div>
     <div class="side-menu__list">
@@ -49,8 +44,7 @@
       <div >
         <ul class="nav__list">
           <li><a [routerLink]="['/home/products']"  >All</a></li>
-          <li><a [routerLink]="['/home/products']"  >Clothes</a></li>
-          <li><a [routerLink]="['/home/products']"  >Electronics</a></li>
+          <li *ngFor="let category of categoriasFiltradas"><a [routerLink]="['/home/category/', category.id]"  >{{ category.name}}</a></li>
         </ul>
       </div>
     </nav>

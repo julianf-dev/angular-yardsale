@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from 'src/app/components/products/products.component';
 import { HomeComponent } from './home.component';
-import { CategoryComponent } from '../category/category.component';
 
 const routes: Routes = [{
   path: '',
@@ -13,14 +12,14 @@ const routes: Routes = [{
       component: ProductsComponent
     },
     {
-      path: 'category:id',
-      component: CategoryComponent
+      path: 'category/:id',
+      component: ProductsComponent
     },
   ]
 },
 {
   path: '**',
-  redirectTo: 'home/products'
+  redirectTo: 'produtcs'
 }
 ];
 

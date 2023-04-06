@@ -6,6 +6,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token/token.service';
+import { Category } from 'src/app/models/category.model';
+import { CategoryService } from 'src/app/services/category/category.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -18,13 +21,17 @@ export class NavComponent implements OnInit {
   counter = 0
   faClose = faClose
   profile: User | null = null
+  categories: Category[] = []
+  categoriasFiltradas: Category[] =  [];
 
   constructor(
     private storeService:StoreService,
     private authService: AuthService,
     private tokenService: TokenService,
+    private categoriesService: CategoryService,
     private router: Router
     ) {
+      this.cargarListas()
   }
 
   myCart$ =  this.storeService.myCart$
@@ -55,6 +62,19 @@ export class NavComponent implements OnInit {
           cancelButtonText: 'ok'
         })
       }
+    })
+  }
+
+  cargarListas(){
+    this.categoriesService.getCategories()
+    .subscribe({
+      next: (respuesta:any) => {
+        console.log(respuesta)
+        this.categories = respuesta
+        this.categoriasFiltradas = this.categories.slice(0, 5)
+        console.log(this.categories)
+      },
+      error: (error:Error) => {console.log(error)}
     })
   }
 

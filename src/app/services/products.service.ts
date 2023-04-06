@@ -14,12 +14,14 @@ import { checkTime } from '../interceptors/time.interceptor';
 })
 export class ProductsService {
 
-  private apiUrl = `${environment.API_URL}/api/v1/products`
+  private apiUrl = `${environment.API_URL}/api/v1`
 
 
   constructor(
     private http: HttpClient
   ) { }
+
+
 
   getAllProducts(limit?:number, offset?:number){
     let params = new HttpParams()
@@ -27,7 +29,7 @@ export class ProductsService {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
-    return this.http.get<Product[]>(this.apiUrl,{params, context: checkTime()})
+    return this.http.get<Product[]>(`${this.apiUrl}/products`,{params, context: checkTime()})
     .pipe(
       retry(2),
       map(products => products.map(item => {
@@ -48,7 +50,7 @@ export class ProductsService {
   }
 
   getProductByPage(limit: number, offset: number): Observable<any> {
-    return this.http.get<Product[]>(this.apiUrl, {
+    return this.http.get<Product[]>(`${this.apiUrl}/products`, {
       params: { limit, offset }
     })
       .pipe(
@@ -68,18 +70,18 @@ export class ProductsService {
   }
 
   getProduct(id: string){
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+    return this.http.get<Product>(`${`${this.apiUrl}/products`}/${id}`);
   }
 
   create(dto: CreateProductDTO){
-    return this.http.post<Product>(this.apiUrl, dto);
+    return this.http.post<Product>(`${this.apiUrl}/products`, dto);
   }
 
   update(id:string, dto: Partial <CreateProductDTO>){
-    return this.http.put<Product>(`${this.apiUrl}/${id}`, dto);
+    return this.http.put<Product>(`${`${this.apiUrl}/products`}/${id}`, dto);
   }
 
   delete(id:string){
-    return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
+    return this.http.delete<boolean>(`${`${this.apiUrl}/products`}/${id}`);
   }
 }
