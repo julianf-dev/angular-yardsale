@@ -79,6 +79,7 @@ export class ProductsComponent {
     request$
       .subscribe({
         next: (data: Product[]) => {
+          console.log(data)
           this.products = this.products.concat(data);
           this.offset += this.limit;
           if (data.length === 0) {

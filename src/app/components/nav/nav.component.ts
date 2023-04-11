@@ -69,10 +69,8 @@ export class NavComponent implements OnInit {
     this.categoriesService.getCategories()
     .subscribe({
       next: (respuesta:any) => {
-        console.log(respuesta)
         this.categories = respuesta
         this.categoriasFiltradas = this.categories.slice(0, 5)
-        console.log(this.categories)
       },
       error: (error:Error) => {console.log(error)}
     })
