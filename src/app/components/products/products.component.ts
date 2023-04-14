@@ -101,15 +101,12 @@ export class ProductsComponent {
     this.loadProducts();
   }
 
-  onAddToShoppingCart(product: Product) {
-    this.storeServices.addProduct(product)
-    this.total = this.storeServices.getTotal()
-  }
+
 
   toggleProductDetail() {
     this.storeServices.toogleProduct();
   }
-
+/*
   onShowDetail(id: string) {
     this.statusDetail = 'loading'
     this.productService.getProduct(id)
@@ -123,7 +120,7 @@ export class ProductsComponent {
           this.statusDetail = 'error'
         }
       })
-  }
+  } */
 
 
   createNewProduct(): void {

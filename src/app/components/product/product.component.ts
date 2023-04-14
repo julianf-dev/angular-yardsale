@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { faPenToSquare} from '@fortawesome/free-solid-svg-icons'
-
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-product',
@@ -33,17 +33,14 @@ export class ProductComponent{
   faEdit = faPenToSquare
 
   addCartImg = '/assets/icons/bt_add_to_cart.svg'
-
-
+  constructor(private storeServices: StoreService){
+  }
   onAddToCar(){
-    this.addedProduct.emit(this.product);
+    this.storeServices.addProduct(this.product)
     this.addCartImg = '/assets/icons/bt_added_to_cart.svg';
     this.disabled = true;
   }
 
-  onShowDetail(){
-    this.showProduct.emit(this.product.id);
-  }
 
   updateProduct(){
     this.updatedProduct.emit(this.product.id);

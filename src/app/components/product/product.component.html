@@ -1,11 +1,12 @@
 <div class="product">
-  <app-img
-    class="product__image"
-    (click)="onShowDetail()"
-    *ngIf="product.images.length > 0"
-    [imgURL]="product.images[0]"
-  >
-  </app-img>
+  <a [routerLink]="['/home/products',product.id]">
+    <app-img
+      class="product__image"
+      *ngIf="product.images.length > 0"
+      [imgURL]="product.images[0]"
+    >
+    </app-img>
+  </a>
   <div class="product__info">
     <div class="product__info_detail">
       <p class="product__info_detail-title">
