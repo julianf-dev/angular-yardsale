@@ -31,6 +31,7 @@ import { HighLightDirective } from './directives/high-light.directive';
 //Interceptors
 import { TimeInterceptor } from './interceptors/time.interceptor';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
+import { PageProductsComponent } from './components/page-products/page-products.component';
 
 
 //Los interceptor tocan de ofrma manual
@@ -52,7 +53,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     CargandoComponent,
     LoginComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    PageProductsComponent
   ],
   imports: [
     BrowserModule,

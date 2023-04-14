@@ -1,11 +1,8 @@
 <div class="product">
-  <app-img
-    class="product__image"
-    (click)="onShowDetail()"
-    *ngIf="product.images.length > 0"
-    [imgURL]="product.images[0]"
-  >
-  </app-img>
+  <a [routerLink]="['/home/products/', product.id]">
+    <app-img class="product__image" *ngIf="product.images.length > 0" [imgURL]="product.images[0]">
+    </app-img>
+  </a>
   <div class="product__info">
     <div class="product__info_detail">
       <p class="product__info_detail-title">
@@ -16,18 +13,16 @@
       </p>
       <p class="product__info_detail-description">{{ product.title }}</p>
     </div>
-    <div
-      class="product__info_image"
-      [ngClass]="{ disabled: disabled }"
-      (click)="onAddToCar()"
-    >
-      <app-img [imgURL]="addCartImg"></app-img>
-    </div>
-    <div
-      (click)="updateProduct()"
-      class="product__info_image"
-    >
-      <fa-icon class="icon-edit" [icon]="faEdit"></fa-icon>
+    <div class="product_actions">
+      <button type="button" (click)="onShowDetail()" class="btn">
+        Ver detalle
+      </button>
+      <div class="product__info_image" [ngClass]="{ disabled: disabled }" (click)="onAddToCar()">
+        <app-img [imgURL]="addCartImg"></app-img>
+      </div>
+      <div (click)="updateProduct()" class="product__info_image">
+        <fa-icon class="icon-edit" [icon]="faEdit"></fa-icon>
+      </div>
     </div>
   </div>
 </div>

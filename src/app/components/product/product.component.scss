@@ -19,7 +19,7 @@ p, h2{
       width: 2.1875rem;
     }
     &_detail{
-      width: 80%;
+      width: 50%;
       &-title{
         font-weight: bold;
         font-size: $md;
@@ -54,4 +54,17 @@ p, h2{
   border-radius: 20px;
   color: white;
   background: $hospital-green;
+}
+
+.product_actions{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: .5rem;
+}
+
+.btn{
+  margin-top: 0;
+  max-width: 100px;
 }

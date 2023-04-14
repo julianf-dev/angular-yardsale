@@ -1,0 +1,87 @@
+@import '../../../styles/vars';
+
+.container-products{
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.3rem;
+}
+
+.product-detail {
+  width: 100%;
+  padding: 0.3rem;
+  display: flex;
+  &__close {
+    display: flex;
+    justify-self: flex-start;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    background-color: $white;
+    width: 66px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    margin-left: 6px;
+    color: $hospital-green;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    &:hover {
+      border: 1px solid $hospital-green;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 0 20px 20px;
+  }
+}
+
+.product-info {
+  width: 70%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  &__price {
+    font-weight: 700;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: $lg;
+  }
+
+  &__description {
+    color: $very-light-pink;
+    font-size: $sm;
+  }
+  &__buttons{
+    width: 30%;
+    display: flex;
+    column-gap: .5rem;
+  }
+  &__addCart {
+    border: none;
+    width: 50%;
+    height: 50px;
+    background-color: $hospital-green;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+.product-image-container {
+  width: 30%;
+}
+
