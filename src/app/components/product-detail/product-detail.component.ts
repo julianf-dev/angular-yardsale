@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { StoreService } from 'src/app/services/store.service';
+import { switchMap } from 'rxjs'
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,49 +14,64 @@ import { StoreService } from 'src/app/services/store.service';
 export class ProductDetailComponent implements  OnInit {
 
   faClose = faClose
-  disabled = false;
+  disabled:boolean = false;
+  productId:string = ''
+  product:Product | null = null
 
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() deleteProduct = new EventEmitter<string>();
-  @Input() productChosen: Product = {
-    id: '',
-    price: 0,
-    images: [],
-    title: '',
-    category: {
-      id: '',
-      name: '',
-      image: ''
-    },
-    description: ''
-  }
 
-  constructor(private storeService: StoreService) { }
+  constructor(
+    private storeService: StoreService,
+    private route: ActivatedRoute,
+    private productsService: ProductsService
+
+    ){
+
+  }
   showProductDetail = false
   showProduct$ = this.storeService.showProduct$
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.storeService.showProduct$.subscribe(state => {
       this.showProductDetail = state
     })
+
+    this.route.paramMap
+      .pipe(
+        switchMap((params) => {
+
+          if (this.productId){
+            return this.productsService.getProduct(this.productId)
+          }
+          return [null]
+        })
+      )
+      .subscribe((data) => {
+        this.product = data;
+      })
   }
 
+
+  cargarProducto(){
+
+  }
   toggleProductDetail() {
     this.storeService.toogleProduct()
   }
 
   onAddCart(){
-    this.addedProduct.emit(this.productChosen)
-    this.storeService.toogleProduct()
+    //this.storeService.addProduct(this.product)
   }
 
-  onEdit(){
-    this.addedProduct.emit(this.productChosen);
-  }
 
   onDelete(){
-    this.deleteProduct.emit(this.productChosen.id);
-    this.storeService.toogleProduct()
+    //this.storeService.toogleProduct()
+    this.productsService.delete(this.productId)
+    .subscribe({
+      next: (respuesta:boolean) => console.log(respuesta),
+      error: (error:Error) => console.log(error)
+    })
   }
 
 }

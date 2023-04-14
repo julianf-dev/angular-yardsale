@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token/token.service';
 import { Category } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/services/category/category.service';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -31,7 +30,7 @@ export class NavComponent implements OnInit {
     private categoriesService: CategoryService,
     private router: Router
     ) {
-      this.cargarListas()
+      this.getCategories()
   }
 
   myCart$ =  this.storeService.myCart$
@@ -65,7 +64,7 @@ export class NavComponent implements OnInit {
     })
   }
 
-  cargarListas(){
+  getCategories(){
     this.categoriesService.getCategories()
     .subscribe({
       next: (respuesta:any) => {

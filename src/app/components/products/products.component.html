@@ -47,10 +47,4 @@
     Load More
   </button>
 </div>
-<app-product-detail
-  (addedProduct)="onAddToShoppingCart($event)"
-  (deleteProduct)="onDeleteProduct($event)"
-  [productChosen]="productChosen"
->
-</app-product-detail>
 <app-cargando *ngIf="loadingProducts"></app-cargando>

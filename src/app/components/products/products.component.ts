@@ -75,11 +75,9 @@ export class ProductsComponent {
     const request$ = this.categoryId ?
       this.categoriesService.getCategory(this.categoryId, this.limit, this.offset) :
       this.productService.getAllProducts(this.limit, this.offset)
-
     request$
       .subscribe({
         next: (data: Product[]) => {
-          console.log(data)
           this.products = this.products.concat(data);
           this.offset += this.limit;
           if (data.length === 0) {
@@ -126,6 +124,7 @@ export class ProductsComponent {
         }
       })
   }
+
 
   createNewProduct(): void {
     const product: CreateProductDTO = {

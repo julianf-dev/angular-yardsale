@@ -9,16 +9,16 @@
     [navigation]="true"
     [pagination]="{clickable: true}"
     >
-      <ng-template swiperSlide *ngFor="let img of productChosen.images">
+      <ng-template swiperSlide *ngFor="let img of product?.images">
         <img [src]="img" alt="" class="product-detail__image"/>
       </ng-template>
     </swiper>
     <div class="product-info">
       <p class="product-info__price">
-        {{ productChosen.price | currency : "USD " }}
+        {{ product?.price | currency : "USD " }}
       </p>
-      <p class="product-info__title">{{ productChosen.title }}</p>
-      <p class="product-info__description">{{ productChosen.description }}</p>
+      <p class="product-info__title">{{ product?.title }}</p>
+      <p class="product-info__description">{{ product?.description }}</p>
       <button
           type="button"
           aria-labelledby="buttonAddProduct"
