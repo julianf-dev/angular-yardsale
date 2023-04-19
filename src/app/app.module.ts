@@ -32,6 +32,7 @@ import { HighLightDirective } from './directives/high-light.directive';
 import { TimeInterceptor } from './interceptors/time.interceptor';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
 import { PageProductsComponent } from './components/page-products/page-products.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 //Los interceptor tocan de ofrma manual
@@ -64,6 +65,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     FontAwesomeModule,
     SwiperModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi:true},
