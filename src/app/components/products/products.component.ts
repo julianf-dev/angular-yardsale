@@ -75,11 +75,9 @@ export class ProductsComponent {
     const request$ = this.categoryId ?
       this.categoriesService.getCategory(this.categoryId, this.limit, this.offset) :
       this.productService.getAllProducts(this.limit, this.offset)
-
     request$
       .subscribe({
         next: (data: Product[]) => {
-          console.log(data)
           this.products = this.products.concat(data);
           this.offset += this.limit;
           if (data.length === 0) {
@@ -103,15 +101,12 @@ export class ProductsComponent {
     this.loadProducts();
   }
 
-  onAddToShoppingCart(product: Product) {
-    this.storeServices.addProduct(product)
-    this.total = this.storeServices.getTotal()
-  }
+
 
   toggleProductDetail() {
     this.storeServices.toogleProduct();
   }
-
+/*
   onShowDetail(id: string) {
     this.statusDetail = 'loading'
     this.productService.getProduct(id)
@@ -125,7 +120,8 @@ export class ProductsComponent {
           this.statusDetail = 'error'
         }
       })
-  }
+  } */
+
 
   createNewProduct(): void {
     const product: CreateProductDTO = {

@@ -1,8 +1,19 @@
 @import '../../../styles/vars';
 
-.product-detail{
+.container-products{
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.3rem;
+}
+
+.product-detail {
   width: 100%;
-  position: fixed;
+  padding: 0.3rem;
+  display: flex;
+  /*   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -15,51 +26,68 @@
   transform: translateX(100%);
   &.active{
     transform: translateX(0);
-  }
-  &__close{
+  } */
+  &__close {
     display: flex;
+    justify-self: flex-start;
     justify-content: center;
     align-items: center;
-    top: 20px;
+    column-gap: .5rem;
+ /*    top: 20px;
     left: 20px;
-    position: absolute;
+    position: absolute; */
     background-color: $white;
-    width: 26px;
-    height: 26px;
-    border-radius: 100%;
-    border: 0.5px solid $very-light-pink;
+    width: 66px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    margin-left: 6px;
+    color: $hospital-green;
+    border-radius: 10px;
+    border: none;
     cursor: pointer;
     z-index: 1;
-    &:hover{
-      background-color: $hospital-green;
+    &:hover {
+      border: 1px solid $hospital-green;
     }
   }
-  &__image{
-    height: 65vh;
+
+  &__image {
     width: 100%;
     object-fit: cover;
     border-radius: 0 0 20px 20px;
   }
 }
 
-.product-info{
+.product-info {
+  width: 70%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  &__price{
+  gap: .5rem;
+
+  &__price {
     font-weight: 700;
   }
-  &__title{
-    font-size: $md;
+
+  &__title {
+    font-weight: 600;
+    font-size: $lg;
   }
-  &__description{
+
+  &__description {
     color: $very-light-pink;
     font-size: $sm;
   }
-  &__addCart{
+  &__buttons{
+    width: 30%;
+    display: flex;
+    column-gap: .5rem;
+  }
+  &__addCart {
     border: none;
-    width: 100%;
+    width: 50%;
+    height: 50px;
     background-color: $hospital-green;
     color: white;
     display: flex;
@@ -70,17 +98,20 @@
   }
 }
 
+.product-image-container {
+  width: 30%;
+}
 
-@media screen and (min-width: 767.98px){
-  .product-detail{
+@media screen and (min-width: 767.98px) {
+  /*   .product-detail{
     width: 30rem;
     left: inherit;
     transition: all ease-out .5s;
-  }
+  } */
 }
 
 @media screen and (min-width: 1199px) {
-  .product-detail{
+  /*   .product-detail{
     width: 40rem;
-  }
+  } */
 }

@@ -1,0 +1,13 @@
+div{
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 85px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img{
+  max-width: 60%;
+  object-fit: cover;
+}

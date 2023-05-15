@@ -1,38 +1,31 @@
-
-<div class="product-detail" [class.active]="showProductDetail">
-  <div>
-    <button type="button" aria-labelledby="buttonToggle" class="product-detail__close" (click)="toggleProductDetail()">
-      <fa-icon [icon]="faClose"></fa-icon>
-    </button>
-    <swiper
-    [slidesPerView]="1"
-    [navigation]="true"
-    [pagination]="{clickable: true}"
-    >
-      <ng-template swiperSlide *ngFor="let img of productChosen.images">
-        <img [src]="img" alt="" class="product-detail__image"/>
-      </ng-template>
-    </swiper>
+<section class="container-products">
+  <button type="button" aria-labelledby="buttonToggle" class="product-detail__close" (click)="getBack()">
+    <fa-icon [icon]="faClose"></fa-icon>
+    <span>Back</span>
+  </button>
+  <div class="product-detail" [class.active]="showProductDetail">
+    <div class="product-image-container">
+      <swiper [slidesPerView]="1" [navigation]="true" [pagination]="{clickable: true}">
+        <ng-template swiperSlide *ngFor="let img of product?.images">
+          <img [src]="img" alt="" class="product-detail__image" />
+        </ng-template>
+      </swiper>
+    </div>
     <div class="product-info">
+      <p class="product-info__title">{{ product?.title }}</p>
+      <p class="product-info__description">{{ product?.description }}</p>
       <p class="product-info__price">
-        {{ productChosen.price | currency : "USD " }}
+        {{ product?.price | currency : "USD " }}
       </p>
-      <p class="product-info__title">{{ productChosen.title }}</p>
-      <p class="product-info__description">{{ productChosen.description }}</p>
-      <button
-          type="button"
-          aria-labelledby="buttonAddProduct"
-          class="product-info__addCart"
-          (click)="onAddCart()">
-          <img src="./assets/icons/bt_add_to_cart.svg" alt="add to cart" />
-          <p>add to Cart</p>
+      <div class="product-info__buttons">
+        <button type="button" aria-labelledby="buttonAddProduct" class="product-info__addCart" (click)="onAddCart()">
+          <img [src]="addCartImg" alt="add to cart" />
+          <p>{{messageAdd}}</p>
         </button>
-        <button
-        type="button"
-        (click)="onDelete()"
-      >
-        <p>delete</p>
-      </button>
+        <button type="button" class="product-info__addCart"  (click)="onDelete()">
+          <p>delete</p>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</section>

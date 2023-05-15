@@ -21,7 +21,7 @@
   <a href="../../../assets/files/texto.txt" download>Descargar</a>
   <span>Descargar mediante un boton</span>
   <button type="button" class="btn" (click)="dowloadPDF()">Descargar PDF</button>
-  <span>Cargar archivos mediante un file  input</span>
+  <span>Cargar archivos mediante un file input</span>
   <div>
     <input type="file" (change)="onUpload($event)">
     <img *ngIf="imgRta" [src]="imgRta">
@@ -31,26 +31,10 @@
 </div>
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
-  <app-product
-    *ngFor="let product of products"
-    [myProduct]="product"
-    (addedProduct)="onAddToShoppingCart($event)"
-    (showProduct)="onShowDetail($event)"
-    (updatedProduct)="updateProduct($event)"
-  ></app-product>
-  <button
-    class="btn"
-    type="button"
-    aria-label="loadMore"
-    (click)="loadMoreProducts()"
-  >
+  <app-product *ngFor="let product of products" [myProduct]="product"
+  (updatedProduct)="updateProduct($event)"></app-product>
+  <button class="btn" type="button" aria-label="loadMore" (click)="loadMoreProducts()">
     Load More
   </button>
 </div>
-<app-product-detail
-  (addedProduct)="onAddToShoppingCart($event)"
-  (deleteProduct)="onDeleteProduct($event)"
-  [productChosen]="productChosen"
->
-</app-product-detail>
 <app-cargando *ngIf="loadingProducts"></app-cargando>

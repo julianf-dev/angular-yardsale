@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from 'src/app/components/products/products.component';
 import { HomeComponent } from './home.component';
-import { PageProductsComponent } from 'src/app/components/page-products/page-products.component';
+import { NotFoundComponent } from '../not-found/not-found.component';
+import { ProductDetailComponent } from 'src/app/components/product-detail/product-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,18 +15,18 @@ const routes: Routes = [{
     },
     {
       path: 'products/:id',
-      component: PageProductsComponent
+      component: ProductDetailComponent
     },
     {
       path: 'category/:id',
       component: ProductsComponent
     },
+    {
+      path: '**',
+      component: NotFoundComponent
+    }
   ]
 },
-{
-  path: '**',
-  redirectTo: 'produtcs'
-}
 ];
 
 @NgModule({

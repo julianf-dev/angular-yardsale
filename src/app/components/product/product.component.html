@@ -1,6 +1,15 @@
 <div class="product">
+<<<<<<< HEAD
   <a [routerLink]="['/home/products/', product.id]">
     <app-img class="product__image" *ngIf="product.images.length > 0" [imgURL]="product.images[0]">
+=======
+  <a [routerLink]="['/home/products',product.id]">
+    <app-img
+      class="product__image"
+      *ngIf="product.images.length > 0"
+      [imgURL]="product.images[0]"
+    >
+>>>>>>> 0852350ca00e38183b78e958cb22a9fe719f71e9
     </app-img>
   </a>
   <div class="product__info">
