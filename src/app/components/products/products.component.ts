@@ -101,12 +101,10 @@ export class ProductsComponent {
     this.loadProducts();
   }
 
-
-
   toggleProductDetail() {
     this.storeServices.toogleProduct();
   }
-/*
+
   onShowDetail(id: string) {
     this.statusDetail = 'loading'
     this.productService.getProduct(id)
@@ -120,7 +118,7 @@ export class ProductsComponent {
           this.statusDetail = 'error'
         }
       })
-  } */
+  }
 
 
   createNewProduct(): void {

@@ -32,7 +32,7 @@
 <div class="products--grid">
   <!--Se envia la propiedad enviandolo dinamicamente-->
   <app-product *ngFor="let product of products" [myProduct]="product"
-  (updatedProduct)="updateProduct($event)"></app-product>
+  (updatedProduct)="updateProduct($event)" (showProduct)="onShowDetail($event)"></app-product>
   <button class="btn" type="button" aria-label="loadMore" (click)="loadMoreProducts()">
     Load More
   </button>

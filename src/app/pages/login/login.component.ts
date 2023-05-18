@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UsersService } from 'src/app/services/users/users.service';
 import Swal from 'sweetalert2';
-import { User } from 'c:/Users/julian-pc/Documents/dev/angular-yardstore/src/app/models/user.model';
-import { TokenService } from 'src/app/services/token/token.service';
+
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
