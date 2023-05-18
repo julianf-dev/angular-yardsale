@@ -12,15 +12,6 @@ export class StoreService {
   private myShoppingCart: Product[] = []
   private myCart = new BehaviorSubject<Product[]>([]);
   myCart$ = this.myCart.asObservable();
-  private showProductDetail = false;
-  private showProduct = new BehaviorSubject<boolean>(this.showProductDetail);
-  showProduct$ = this.showProduct.asObservable();
-
-
-  toogleProduct(){
-    this.showProductDetail = !this.showProductDetail;
-    this.showProduct.next(this.showProductDetail)
-  }
 
   getShopingCart(){
     return this.myShoppingCart

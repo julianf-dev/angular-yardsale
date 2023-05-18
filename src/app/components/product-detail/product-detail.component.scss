@@ -1,19 +1,8 @@
 @import '../../../styles/vars';
 
-.container-products{
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 0.3rem;
-}
-
-.product-detail {
+.product-detail{
   width: 100%;
-  padding: 0.3rem;
-  display: flex;
-  /*   position: fixed;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -22,72 +11,54 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  transition: none;
+  transition: all ease-out .5s;
   transform: translateX(100%);
   &.active{
     transform: translateX(0);
-  } */
-  &__close {
+  }
+  &__close{
     display: flex;
-    justify-self: flex-start;
     justify-content: center;
     align-items: center;
-    column-gap: .5rem;
- /*    top: 20px;
+    top: 20px;
     left: 20px;
-    position: absolute; */
+    position: absolute;
     background-color: $white;
-    width: 66px;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 30px;
-    margin-left: 6px;
-    color: $hospital-green;
-    border-radius: 10px;
-    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    border: 0.5px solid $very-light-pink;
     cursor: pointer;
     z-index: 1;
-    &:hover {
-      border: 1px solid $hospital-green;
+    &:hover{
+      background-color: $hospital-green;
     }
   }
-
-  &__image {
+  &__image{
+    height: 65vh;
     width: 100%;
-    object-fit: cover;
     border-radius: 0 0 20px 20px;
   }
 }
 
-.product-info {
-  width: 70%;
+.product-info{
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: .5rem;
-
-  &__price {
+  gap: 20px;
+  &__price{
     font-weight: 700;
   }
-
-  &__title {
-    font-weight: 600;
-    font-size: $lg;
+  &__title{
+    font-size: $md;
   }
-
-  &__description {
+  &__description{
     color: $very-light-pink;
     font-size: $sm;
   }
-  &__buttons{
-    width: 30%;
-    display: flex;
-    column-gap: .5rem;
-  }
-  &__addCart {
+  &__addCart{
     border: none;
-    width: 50%;
-    height: 50px;
+    width: 100%;
     background-color: $hospital-green;
     color: white;
     display: flex;
@@ -98,20 +69,17 @@
   }
 }
 
-.product-image-container {
-  width: 30%;
-}
 
 @media screen and (min-width: 767.98px) {
-  /*   .product-detail{
+    .product-detail{
     width: 30rem;
     left: inherit;
     transition: all ease-out .5s;
-  } */
+  }
 }
 
 @media screen and (min-width: 1199px) {
-  /*   .product-detail{
+    .product-detail{
     width: 40rem;
-  } */
+  }
 }

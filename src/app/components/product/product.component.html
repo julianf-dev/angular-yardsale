@@ -1,5 +1,5 @@
 <div class="product">
-  <a [routerLink]="['/home/products',product.id]">
+  <a [routerLink]="['/product',product.id]">
     <app-img
       class="product__image"
       *ngIf="product.images.length > 0"
@@ -18,7 +18,7 @@
       <p class="product__info_detail-description">{{ product.title }}</p>
     </div>
     <div class="product_actions">
-      <button type="button" (click)="onShowDetail()" class="btn">
+      <button class="btn" routerLink="." [queryParams]="{product: product.id}">
         Ver detalle
       </button>
       <div class="product__info_image" [ngClass]="{ disabled: disabled }" (click)="onAddToCar()">

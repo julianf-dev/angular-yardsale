@@ -18,5 +18,4 @@ export class AppComponent {
     this.showImg = !this.showImg;
   }
 
-
 }

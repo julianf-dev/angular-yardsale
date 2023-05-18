@@ -3,7 +3,7 @@
     <fa-icon [icon]="faClose"></fa-icon>
     <span>Back</span>
   </button>
-  <div class="product-detail" [class.active]="showProductDetail">
+  <div class="product-detail">
     <div class="product-image-container">
       <swiper [slidesPerView]="1" [navigation]="true" [pagination]="{clickable: true}">
         <ng-template swiperSlide *ngFor="let img of product?.images">
@@ -17,15 +17,6 @@
       <p class="product-info__price">
         {{ product?.price | currency : "USD " }}
       </p>
-      <div class="product-info__buttons">
-        <button type="button" aria-labelledby="buttonAddProduct" class="product-info__addCart" (click)="onAddCart()">
-          <img [src]="addCartImg" alt="add to cart" />
-          <p>{{messageAdd}}</p>
-        </button>
-        <button type="button" class="product-info__addCart"  (click)="onDelete()">
-          <p>delete</p>
-        </button>
-      </div>
     </div>
   </div>
 </section>

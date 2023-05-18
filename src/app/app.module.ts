@@ -31,8 +31,9 @@ import { HighLightDirective } from './directives/high-light.directive';
 //Interceptors
 import { TimeInterceptor } from './interceptors/time.interceptor';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
-import { PageProductsComponent } from './components/page-products/page-products.component';
+import { PageProductsComponent } from './pages/page-products/page-products.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryComponent } from './pages/category/category.component';
 
 
 //Los interceptor tocan de ofrma manual
@@ -43,19 +44,20 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
   declarations: [
     AppComponent,
     ImgComponent,
-    ProductComponent,
-    ProductsComponent,
     NavComponent,
     ReversePipe,
     TimeAgoPipe,
     vocalChangePipe,
     HighLightDirective,
-    ProductDetailComponent,
     CargandoComponent,
     LoginComponent,
     SignUpComponent,
+    ProductsComponent,
+    ProductComponent,
     HomeComponent,
-    PageProductsComponent
+    ProductDetailComponent,
+    PageProductsComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

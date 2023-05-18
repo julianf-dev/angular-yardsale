@@ -1,90 +1,56 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { StoreService } from 'src/app/services/store.service';
-import { switchMap } from 'rxjs'
-import { ProductsService } from 'src/app/services/products.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements  OnInit {
+export class ProductDetailComponent{
 
-  faClose = faArrowLeft
-  disabled:boolean = false;
-  productId:string = ''
-  product:Product | null = null
+  faClose = faClose
+  disabled = false;
   addCartImg:string = '/assets/icons/bt_add_to_cart.svg'
   messageAdd:string = 'Add to Cart'
-
+  active:any
 
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() deleteProduct = new EventEmitter<string>();
-
-  constructor(
-    private storeService: StoreService,
-    private route: ActivatedRoute,
-    private productsService: ProductsService,
-    private router: Router
-    ){
-
-  }
-  showProductDetail = false
-  showProduct$ = this.storeService.showProduct$
-
-  ngOnInit(): void{
-    this.storeService.showProduct$.subscribe(state => {
-      this.showProductDetail = state
-    })
-
-    this.route.paramMap
-      .pipe(
-        switchMap((params) => {
-          const id = params.get('id')
-          if (id != null){
-            this.productId = id
-            return this.productsService.getProduct(this.productId)
-          }
-          return [null]
-        })
-      )
-      .subscribe((data) => {
-        console.log(data)
-        this.product = data;
-      })
+  @Output() closedModal = new EventEmitter<boolean>();
+  @Input() productChosen: Product = {
+    id: '',
+    price: 0,
+    images: [],
+    title: '',
+    category: {
+      id: '',
+      name: '',
+      image: ''
+    },
+    description: ''
   }
 
-  getBack() {
-    //this.storeService.toogleProduct()
-    this.router.navigate(['home/category', this.product?.category.id])
+  ngOnInit(){
+    this.active = true
+  }
+
+  closeModal(){
+    this.active = false;
+    this.closedModal.emit()
   }
 
   onAddCart(){
-    if(this.product !== null){
-      this.storeService.addProduct(this.product)
-      this.addCartImg = '/assets/icons/bt_added_to_cart.svg';
-      this.messageAdd = 'Product added'
-    }
+    this.addedProduct.emit(this.productChosen)
   }
 
+  onEdit(){
+    this.addedProduct.emit(this.productChosen);
+  }
 
   onDelete(){
-    //this.storeService.toogleProduct()
-    this.productsService.delete(this.productId ?? '')
-    .subscribe({
-      next: (respuesta:boolean) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Product deleted'
-        })
-        this.router.navigate(['home/category', this.product?.category.id])
-      },
-      error: (error:Error) => console.log(error)
-    });
+    this.deleteProduct.emit(this.productChosen.id);
   }
 
 }

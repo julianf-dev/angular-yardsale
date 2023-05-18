@@ -32,14 +32,8 @@ export class PageProductsComponent {
     ){
 
   }
-  showProductDetail = false
-  showProduct$ = this.storeService.showProduct$
 
   ngOnInit(): void{
-    this.storeService.showProduct$.subscribe(state => {
-      this.showProductDetail = state
-    })
-
     this.route.paramMap
       .pipe(
         switchMap((params) => {
@@ -52,14 +46,12 @@ export class PageProductsComponent {
         })
       )
       .subscribe((data) => {
-        console.log(data)
         this.product = data;
       })
   }
 
   getBack() {
-    //this.storeService.toogleProduct()
-    this.router.navigate(['home/category', this.product?.category.id])
+    this.router.navigate(['category', this.product?.category.id])
   }
 
   onAddCart(){
@@ -70,9 +62,7 @@ export class PageProductsComponent {
     }
   }
 
-
   onDelete(){
-    //this.storeService.toogleProduct()
     this.productsService.delete(this.productId ?? '')
     .subscribe({
       next: (respuesta:boolean) => {

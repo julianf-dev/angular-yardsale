@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { switchMap } from 'rxjs';
 import { CreateProductDTO, Product, updateProduct } from 'src/app/models/product.model';
 import { FilesService } from 'src/app/services/files/files.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { ActivatedRoute, Params, Router } from '@angular/router'
+import { ActivatedRoute} from '@angular/router'
 
 import { StoreService } from 'src/app/services/store.service';
 import Swal from 'sweetalert2';
@@ -16,11 +16,23 @@ import { CategoryService } from 'src/app/services/category/category.service';
 })
 export class ProductsComponent {
 
-  faClose = faClose
+  @Input() products: Product[] = [];
+  @Input() set productId(id: string | null){
+    if(id != null){
+      this.onShowDetail(id)
+    }
+  }
+  // @Input() productId: string | null = null;
+  @Output()loadMore = new EventEmitter();
+
   myShoppingCart: Product[] = []
-  total = 0
-  today = new Date();
-  date = new Date(2021, 2, 21)
+
+  /*  Ids to navgiate */
+  categoryId: string = ''
+  limit = 10;
+  offset = 0;
+  loadingProducts: boolean = false;
+  imgRta: string = ''
   productChosen: Product = {
     id: '',
     price: 0,
@@ -33,15 +45,12 @@ export class ProductsComponent {
     },
     description: ''
   }
-  categoryId: string = ''
 
-  limit = 10;
-  offset = 0;
-  products: Product[] = [];
-  loadingProducts: boolean = false;
+  /*  Banderas */
+  showProductDetail: boolean = false;
+  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
-  statusDetail: 'loading' | 'sucess' | 'error' | 'init' = 'init'
-  imgRta: string = ''
+
 
   constructor(
     private storeServices: StoreService,
@@ -51,73 +60,12 @@ export class ProductsComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.myShoppingCart = this.storeServices.getShopingCart()
-
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.categoryId = params['id'];
-      if (this.categoryId) {
-        this.loadCategoryProducts(this.categoryId)
-      }
-    });
-    this.loadProducts()
-  }
-
-  loadCategoryProducts(categoryId: string) {
-    this.categoryId = categoryId;
-    this.products = [];
-    this.offset = 0;
-    this.loadProducts();
-  }
-
-  loadProducts() {
-    const request$ = this.categoryId ?
-      this.categoriesService.getCategory(this.categoryId, this.limit, this.offset) :
-      this.productService.getAllProducts(this.limit, this.offset)
-    request$
-      .subscribe({
-        next: (data: Product[]) => {
-          this.products = this.products.concat(data);
-          this.offset += this.limit;
-          if (data.length === 0) {
-            this.offset = 0;
-          }
-        },
-        error: (error: string) => {
-          this.loadingProducts = false
-          Swal.fire({
-            title: 'Error!',
-            text: error,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-          });
-        },
-      });
-  }
-
-  loadMoreProducts() {
-    this.offset += this.limit;
-    this.loadProducts();
-  }
-
-  toggleProductDetail() {
-    this.storeServices.toogleProduct();
-  }
-
-  onShowDetail(id: string) {
-    this.statusDetail = 'loading'
-    this.productService.getProduct(id)
-      .subscribe({
-        next: (data: Product) => {
-          this.toggleProductDetail();
-          this.productChosen = data;
-          this.statusDetail = 'sucess'
-        },
-        error: repoonse => {
-          this.statusDetail = 'error'
-        }
-      })
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      this.productId = params.get('product');
+    })
   }
 
 
@@ -174,7 +122,6 @@ export class ProductsComponent {
       )
   }
 
-
   readAndUpdate(id: string) {
     this.productService.getProduct(id)
       .pipe(
@@ -210,4 +157,30 @@ export class ProductsComponent {
         })
     }
   }
+
+  toggleProductDetail() {
+    this.showProductDetail = false;
+  }
+
+  onShowDetail(id: string) {
+    if(!this.showProductDetail){
+      this.showProductDetail = true
+    }
+    this.statusDetail = 'loading';
+    this.productService.getProduct(id).subscribe(
+      (data) => {
+        this.productChosen = data;
+        this.statusDetail = 'success';
+      },
+      (errorMsg) => {
+        window.alert(errorMsg);
+        this.statusDetail = 'error';
+      }
+    );
+  }
+
+  onLoadMore() {
+    this.loadMore.emit();
+  }
+
 }
