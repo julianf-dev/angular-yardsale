@@ -40,9 +40,6 @@ export class ProductComponent{
     this.addCartImg = '/assets/icons/bt_added_to_cart.svg';
     this.disabled = true;
   }
-  onShowDetail(){
-    this.showProduct.emit(this.product.id);
-  }
 
   updateProduct(){
     this.updatedProduct.emit(this.product.id);

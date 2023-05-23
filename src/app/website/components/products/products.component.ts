@@ -56,7 +56,6 @@ export class ProductsComponent {
     private storeServices: StoreService,
     private productService: ProductsService,
     private filesService: FilesService,
-    private categoriesService: CategoryService,
     private activatedRoute: ActivatedRoute
   ) {
     this.myShoppingCart = this.storeServices.getShopingCart()
