@@ -44,7 +44,7 @@
       </a>
       <div >
         <ul class="nav__list">
-          <li><a [routerLink]="['/products']"  >All</a></li>
+          <li><a [routerLink]="['home']"  >All</a></li>
           <li *ngFor="let category of categoriasFiltradas"><a  routerLinkActive="active" [routerLink]="['/category/', category.id]"  >{{ category.name}}</a></li>
         </ul>
       </div>

@@ -34,6 +34,7 @@ import { TokenInterceptor } from './interceptors/token/token.interceptor';
 import { PageProductsComponent } from './website/pages/page-products/page-products.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryComponent } from './website/pages/category/category.component';
+import { LayoutComponent } from './website/components/layout/layout/layout.component';
 
 
 //Los interceptor tocan de ofrma manual
@@ -57,7 +58,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
     HomeComponent,
     ProductDetailComponent,
     PageProductsComponent,
-    CategoryComponent
+    CategoryComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
