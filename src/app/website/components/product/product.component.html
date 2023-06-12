@@ -1,5 +1,5 @@
 <div class="product">
-  <a [routerLink]="['/product',product.id]">
+  <a [routerLink]="['product',product.id]">
     <app-img
       class="product__image"
       *ngIf="product.images.length > 0"

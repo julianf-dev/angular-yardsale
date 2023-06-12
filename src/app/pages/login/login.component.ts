@@ -42,7 +42,7 @@ export class LoginComponent {
       .subscribe(
         {
           next: (() => {
-            this.router.navigate(['home'])
+            this.router.navigate(['website/home'])
           }),
           error: (error =>{
             Swal.fire({

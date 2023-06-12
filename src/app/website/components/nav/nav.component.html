@@ -3,7 +3,7 @@
     <button class="show-mobile__button" (click)="toggleMenu()">
       <img src="./assets/icons/icon_menu.svg" alt="menu">
     </button>
-    <a [routerLink]="['/']"  >
+    <a [routerLink]="['home']"  >
       <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
     </a>
     <div class="cart">
@@ -21,8 +21,8 @@
     <div class="side-menu__list">
         <p class="side-menu__title">CATEGORIES</p>
         <ul>
-          <li><a [routerLink]="['/products']"  >All</a></li>
-          <li *ngFor="let category of categoriasFiltradas"><a routerLinkActive="active" [routerLink]="['/category/', category.id]"  >{{ category.name}}</a></li>
+          <li><a [routerLink]="['products']"  >All</a></li>
+          <li *ngFor="let category of categoriasFiltradas"><a routerLinkActive="active" [routerLink]="['category/', category.id]"  >{{ category.name}}</a></li>
         </ul>
     </div>
     <div class="side-menu__list">
@@ -39,13 +39,13 @@
 <div class="hide-mobile">
   <div class="header">
     <nav class="nav">
-      <a class="nav__logo" [routerLink]="['/']"  >
+      <a class="nav__logo" [routerLink]="['home']"  >
         <img src="./assets/logos/logo_yard_sale.svg" alt="logo">
       </a>
       <div >
         <ul class="nav__list">
           <li><a [routerLink]="['home']"  >All</a></li>
-          <li *ngFor="let category of categoriasFiltradas"><a  routerLinkActive="active" [routerLink]="['/category/', category.id]"  >{{ category.name}}</a></li>
+          <li *ngFor="let category of categoriasFiltradas"><a  routerLinkActive="active" [routerLink]="['category/', category.id]"  >{{ category.name}}</a></li>
         </ul>
       </div>
     </nav>

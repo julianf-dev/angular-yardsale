@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/grid',
+    redirectTo: ' grid',
     pathMatch: 'full'
   }
 

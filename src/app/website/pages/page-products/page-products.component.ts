@@ -70,7 +70,7 @@ export class PageProductsComponent {
           icon: 'success',
           title: 'Product deleted'
         })
-        this.router.navigate(['home/category', this.product?.category.id])
+        this.router.navigate(['category', this.product?.category.id])
       },
       error: (error:Error) => console.log(error)
     });

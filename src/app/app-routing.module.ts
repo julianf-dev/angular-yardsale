@@ -1,41 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './website/pages/login/login.component';
-import { SignUpComponent } from './website/pages/sign-up/sign-up.component';
 import { AuthGuard } from './guards/auth.guard';
-import { HomeComponent } from './website/pages/home/home.component';
-import { CategoryComponent } from './website/pages/category/category.component';
-import { PageProductsComponent } from './website/pages/page-products/page-products.component';
-import { LayoutComponent } from './website/components/layout/layout/layout.component';
-import { NotFoundComponent } from './website/pages/not-found/not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { LoginComponent } from './pages/login/login.component';
+
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-      },
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'category/:id',
-        canActivate: [AuthGuard],
-        component: CategoryComponent
-      },
-      {
-        path: 'product/:id',
-        canActivate: [AuthGuard],
-        component: PageProductsComponent
-      },
-    ],
-    canActivate: [AuthGuard],
-  },
   {
     path: 'login',
     component: LoginComponent
@@ -45,8 +16,23 @@ const routes: Routes = [
     component: SignUpComponent
   },
   {
+    path: '',
+    redirectTo: 'website',
+    pathMatch: 'full'
+  },
+  {
+    path: 'website',
+    loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'cms',
+    loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
-    component: LayoutComponent
+    component: NotFoundComponent
   }
 ];
 
