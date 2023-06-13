@@ -83,7 +83,6 @@ export class ProductsComponent {
   }
 
   updateProduct(id: string) {
-    this.loadingProducts = true
     const changes: updateProduct = {
       title: 'newTitle'
     }
@@ -94,7 +93,6 @@ export class ProductsComponent {
           this.products[productIndex] = data;
         },
         error: (error: string) => {
-          this.loadingProducts = false
           Swal.fire({
             title: 'Error!',
             text: error,

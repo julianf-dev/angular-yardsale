@@ -60,6 +60,8 @@ export class NavComponent implements OnInit {
           icon: 'error',
           cancelButtonText: 'ok'
         })
+        this.router.navigate(['login'])
+
       }
     })
   }

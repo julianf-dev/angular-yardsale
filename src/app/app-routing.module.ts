@@ -16,11 +16,6 @@ const routes: Routes = [
     component: SignUpComponent
   },
   {
-    path: '',
-    redirectTo: 'website',
-    pathMatch: 'full'
-  },
-  {
     path: 'website',
     loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule),
     canActivate: [AuthGuard]
@@ -31,8 +26,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: '**',
-    component: NotFoundComponent
+    path: '',
+    redirectTo: 'website',
+    pathMatch: 'full'
   }
 ];
 

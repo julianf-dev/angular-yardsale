@@ -51,7 +51,7 @@ export class PageProductsComponent {
   }
 
   getBack() {
-    this.router.navigate(['category', this.product?.category.id])
+    this.router.navigate(['/website/category', this.product?.category.id])
   }
 
   onAddCart(){
@@ -70,7 +70,7 @@ export class PageProductsComponent {
           icon: 'success',
           title: 'Product deleted'
         })
-        this.router.navigate(['category', this.product?.category.id])
+        this.router.navigate(['/website/category', this.product?.category.id])
       },
       error: (error:Error) => console.log(error)
     });
