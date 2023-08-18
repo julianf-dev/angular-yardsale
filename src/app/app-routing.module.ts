@@ -29,6 +29,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'website',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
