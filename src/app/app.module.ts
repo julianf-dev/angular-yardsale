@@ -14,6 +14,7 @@ import { TokenInterceptor } from './interceptors/token/token.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 
 import { HTTP_INTERCEPTORS,HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 //Los interceptor tocan de ofrma manual
@@ -23,6 +24,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar])
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
