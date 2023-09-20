@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
@@ -18,12 +18,15 @@ const routes: Routes = [
   {
     path: 'website',
     loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      preload: true
+    }
   },
   {
     path: 'cms',
     loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: '',
@@ -37,7 +40,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
