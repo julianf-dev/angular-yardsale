@@ -24,7 +24,6 @@ import { SharedModule } from '../shared/shared.module';
     SignUpComponent,
     HomeComponent,
     PageProductsComponent,
-    CategoryComponent,
     LayoutComponent
   ],
   imports: [
