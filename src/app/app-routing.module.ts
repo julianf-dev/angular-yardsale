@@ -4,6 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CustomPreloadService } from './services/custom-preload.service';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
     path: 'cms',
     loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule),
     canActivate: [AuthGuard],
+
   },
   {
     path: '',
@@ -41,7 +43,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: CustomPreloadService
+
   })],
   exports: [RouterModule]
 })
