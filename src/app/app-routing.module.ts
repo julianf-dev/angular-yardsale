@@ -5,6 +5,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CustomPreloadService } from './services/custom-preload.service';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
   {
     path: 'cms',
     loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule),
-    canActivate: [AuthGuard],
+    canActivate: [AdminAuthGuard],
 
   },
   {
