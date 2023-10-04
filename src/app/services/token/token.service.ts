@@ -20,9 +20,9 @@ export class TokenService {
     return this.cookieService.get("token")
   }
 
-  removeToken() {
-    this.cookieService.deleteAll('/')
-    this.cookieService.delete("token", '/');
+  async removeToken() {
+    await this.cookieService.deleteAll('/')
+    await this.cookieService.delete("token", '/');
   }
 
 

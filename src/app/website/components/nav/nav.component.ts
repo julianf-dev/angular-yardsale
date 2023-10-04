@@ -23,6 +23,8 @@ export class NavComponent implements OnInit {
   categories: Category[] = []
   categoriasFiltradas: Category[] =  [];
 
+
+
   constructor(
     private storeService:StoreService,
     private authService: AuthService,
@@ -48,10 +50,11 @@ export class NavComponent implements OnInit {
   }
 
   getUser(){
-    this.authService.getUser()
+    this.authService.user$
     .subscribe({
-      next: (respuesta) => {
-        this.profile = respuesta
+      next: (user) => {
+        console.log(user);
+        this.profile = user
       },
       error: (error) =>{
         Swal.fire({
@@ -79,7 +82,10 @@ export class NavComponent implements OnInit {
 
   logOut(){
     this.tokenService.removeToken();
-    this.router.navigate(['login'])
+    this.profile = null
+    this.router.navigate(['login']).then(() => {
+      window.location.reload();
+    });
   }
 
 }

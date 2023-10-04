@@ -1,17 +1,29 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { TokenService } from "./services/token/token.service";
+import { AuthService } from "./services/auth/auth.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<router-outlet></router-outlet>',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   imgParent = '';
   showImg = true;
-
+  authService= inject(AuthService);
+  tokenService = inject(TokenService)
 
   ngOnInit(){
-/*     this.deleteSessionCookies() */
+    /*this.deleteSessionCookies() */
+    this.getProfile();
+  }
+
+  getProfile(){
+    const token = this.tokenService.getToken();
+    if(token){
+      this.authService.getUser()
+      .subscribe()
+    }
   }
   // If the event arrives from the child successfully
   onLoaded(img:string){
@@ -21,6 +33,7 @@ export class AppComponent {
   toggleImg() {
     this.showImg = !this.showImg;
   }
+
 /*
   deleteSessionCookies() {
     // Obtener todas las cookies

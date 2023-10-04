@@ -12,8 +12,8 @@ export class ProfileComponent {
   user: User | null = null
   authService = inject(AuthService)
 
-  ngOnInit() {
-    this.authService.getUser()
+  ngOnInit(){
+    this.authService.user$
       .subscribe(data => {
         this.user = data
       })

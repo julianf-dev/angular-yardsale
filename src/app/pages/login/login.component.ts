@@ -38,10 +38,10 @@ export class LoginComponent {
         email: this.formLogin.get('name_user').value,
         password: this.formLogin.get('password').value,
       }
-      this.autService.login(credentials)
+      this.autService.loginAndGetProfile(credentials)
       .subscribe(
         {
-          next: (() => {
+          next: (( respuesta) => {
             this.router.navigate(['website/home'])
           }),
           error: (error =>{
