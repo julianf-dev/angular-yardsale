@@ -40,7 +40,8 @@ export class SignUpComponent {
         name: this.formRegistroUsuario.get('name').value,
         email: this.formRegistroUsuario.get('email').value,
         password: this.formRegistroUsuario.get('password').value,
-        avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867"
+        avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867",
+        role: 'customer'
       }
       this.userService.create(newUser).subscribe(
         {

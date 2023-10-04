@@ -4,6 +4,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { PageProductsComponent } from './pages/page-products/page-products.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -30,6 +32,10 @@ const routes: Routes = [
         path: 'product/:id',
         component: PageProductsComponent,
       },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      }
 
     ],
   },

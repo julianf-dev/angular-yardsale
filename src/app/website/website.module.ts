@@ -15,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     SignUpComponent,
     HomeComponent,
     PageProductsComponent,
+    ProfileComponent,
     LayoutComponent
   ],
   imports: [
