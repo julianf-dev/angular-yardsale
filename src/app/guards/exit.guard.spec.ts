@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProfileGuard } from './profile.guard';
+import { ExitGuard } from './exit.guard';
 
-describe('ProfileGuard', () => {
-  let guard: ProfileGuard;
+describe('ExitGuard', () => {
+  let guard: ExitGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(ProfileGuard);
+    guard = TestBed.inject(ExitGuard);
   });
 
   it('should be created', () => {

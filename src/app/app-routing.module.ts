@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CustomPreloadService } from './services/custom-preload.service';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
+import { ExitGuard } from './guards/exit.guard';
 
 
 const routes: Routes = [
@@ -15,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'registrarse',
-    component: SignUpComponent
+    component: SignUpComponent,
+    canDeactivate: [ExitGuard]
   },
   {
     path: 'website',
@@ -31,8 +32,9 @@ const routes: Routes = [
     canActivate: [AdminAuthGuard],
   },
   {
-    path: '**',
-    component: NotFoundComponent
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   }
 ];
 

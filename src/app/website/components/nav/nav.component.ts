@@ -53,7 +53,6 @@ export class NavComponent implements OnInit {
     this.authService.user$
     .subscribe({
       next: (user) => {
-        console.log(user);
         this.profile = user
       },
       error: (error) =>{

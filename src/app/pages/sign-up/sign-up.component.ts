@@ -65,4 +65,18 @@ export class SignUpComponent {
       )
     }
   }
+
+  onExit(){
+    const confirm = Swal.fire({
+      title: 'Do you wan to leave this site?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        return true;
+      }
+      return false
+    });
+    return confirm
+  }
 }

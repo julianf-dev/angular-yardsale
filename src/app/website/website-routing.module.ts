@@ -6,6 +6,8 @@ import { PageProductsComponent } from './pages/page-products/page-products.compo
 import { LayoutComponent } from './components/layout/layout.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { RecoveryComponent } from './pages/recovery/recovery.component';
+import { ExitGuard } from '../guards/exit.guard';
 
 const routes: Routes = [
   {
@@ -30,6 +32,11 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+      },
+      {
+        path: 'recovery',
+        component:RecoveryComponent,
+        canDeactivate: [ExitGuard]
       },
       {
         path: '',
