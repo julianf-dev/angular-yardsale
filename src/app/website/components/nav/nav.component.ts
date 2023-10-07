@@ -81,11 +81,8 @@ export class NavComponent implements OnInit {
   }
 
   logOut(){
-    this.tokenService.removeToken();
     this.profile = null
-    this.router.navigate(['login']).then(() => {
-      window.location.reload();
-    });
+    this.authService.logout()
   }
 
 }

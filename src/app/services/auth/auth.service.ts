@@ -6,6 +6,7 @@ import { AuthModel } from 'src/app/models/auth.model';
 import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 import { TokenService } from '../token/token.service';
 import { addToken } from 'src/app/interceptors/token/token.interceptor';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -20,6 +21,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private tokenservice: TokenService,
+    private router: Router
   ) { }
 
   getHttpHeaders() {
@@ -45,7 +47,9 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}/profile`)
     .pipe(
       //Tap se usa para haga una accion cuando reciba la respuesta
-      tap( user => this.user.next(user))
+      tap( user => {
+        this.user.next(user)
+      })
     )
   }
 
@@ -54,5 +58,13 @@ export class AuthService {
     .pipe(
       switchMap(() => this.getUser())
     )
+  }
+
+  logout(){
+    this.user.next(null)
+    this.tokenservice.removeToken();
+    this.router.navigate(['login']).then(() => {
+      window.location.reload();
+    });
   }
 }
