@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/angular-modules"
+  publish = "dist/angular-yardstore"
   command = "npm run build"
 [[redirects]]
   from = "/*"
